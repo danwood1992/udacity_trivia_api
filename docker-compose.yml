@@ -1,0 +1,48 @@
+services:
+  trivia-api:
+    build:
+      context: .
+      dockerfile: ./compose/api/Dockerfile
+    command: /start
+    volumes:
+      - .:/opt/trivia
+    env_file:
+      - ./.env
+    ports:
+      - "443:5125"
+      - "80:5125"
+    networks:
+      - trivia-network
+    depends_on:
+      - trivia-db
+
+  trivia-db:
+    image: postgres:14.9
+    volumes:
+      - trivia_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    ports:
+      - "5432:5432"
+    networks:
+      - trivia-network
+      
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL:
+        admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: insecurepassword
+    ports:
+      - "5050:80"
+    networks:
+      - trivia-network
+
+
+
+networks:
+  trivia-network:
+    driver: bridge
+
+volumes:
+  trivia_postgres_data:

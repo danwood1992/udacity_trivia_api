@@ -1,0 +1,12 @@
+psycopg2-binary
+flask-moment
+flask 
+flask_sqlalchemy
+flask_migrate
+aniso8601
+python-dateutil
+Click
+flask_cors
+
+
+
