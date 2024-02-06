@@ -22,6 +22,25 @@ class BaseModel(db.Model):
         db.session.commit()
         if self.id:
             return True
+    
+    def all(self):
+        return self.query.all()
+    
+    def get(self, id):
+        return self.query.get(id)
+    
+    def first(self):
+        return self.query.first()
+    
+    def last(self):
+        return self.query.last()
+    
+    def filter(self, **kwargs):
+        return self.query.filter_by(**kwargs).all()
+    
+    def count(self):
+        return self.query.count()
+        
         
     def repr(self):
         return f'{self.name}'
@@ -30,10 +49,9 @@ class BaseModel(db.Model):
 class Question(BaseModel):
     __tablename__ = 'questions'
 
-    id = Column(Integer, primary_key=True)
-    question = Column(String)
-    answer = Column(String)
-    category = Column(String)
+    question = db.Column(db.String, nullable=False)
+    answer = db.Column(db.String, nullable=False)
+    category = db.relationship('Category', backref='questions')
     difficulty = Column(Integer)
 
   
@@ -41,8 +59,7 @@ class Question(BaseModel):
 class Category(BaseModel):
     __tablename__ = 'categories'
 
-    id = Column(Integer, primary_key=True)
-    type = Column(String)
+    type = db.Column(db.String, nullable=False)
 
     def __init__(self, type):
         self.type = type

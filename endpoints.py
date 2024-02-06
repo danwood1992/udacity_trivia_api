@@ -1,6 +1,22 @@
 from flask import jsonify
+from dataseed import seed_database
 from models import Question, Category, Quiz
 from base import app, db
+
+@app.route('/seed', methods=['GET'])
+def seed():
+    if Question.query.count() > 0:
+        return jsonify({
+            'success': False,
+            'message': 'Database already seeded'
+        })
+    else:
+        seed_database()
+        return jsonify({
+            'success': True,
+            'message': 'Database seeded'
+        })
+        
 
 @app.route('/categories', methods=['GET'])
 def get_categories():
