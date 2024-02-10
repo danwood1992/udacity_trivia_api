@@ -1,4 +1,4 @@
-from models import Question, Category, Quiz
+from models import Question, Category
 
 categories = [
     'Science',

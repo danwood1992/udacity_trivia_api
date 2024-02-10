@@ -4,7 +4,6 @@ from sqlalchemy import Column, String, Integer
 class BaseModel(db.Model):
     __abstract__ = True
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False, unique=True)
-    name = db.Column(db.String(120), nullable=True)
 
     def add(self):
         db.session.add(self)
@@ -40,12 +39,11 @@ class BaseModel(db.Model):
     
     def count(self):
         return self.query.count()
-        
-        
+            
     def repr(self):
         return f'{self.name}'
-
-
+    
+     
 class Question(BaseModel):
     __tablename__ = 'questions'
 
@@ -55,14 +53,10 @@ class Question(BaseModel):
     difficulty = Column(Integer)
 
   
-
 class Category(BaseModel):
     __tablename__ = 'categories'
-
+    
     type = db.Column(db.String, nullable=False)
-
-    def __init__(self, type):
-        self.type = type
 
     def format(self):
         return {
@@ -70,24 +64,6 @@ class Category(BaseModel):
             'type': self.type
             }
 
-
-class Quiz(BaseModel):
-    __tablename__ = 'quizzes'
-
-    id = Column(Integer, primary_key=True)
-    question = Column(String)
-    answer = Column(String)
-    category = Column(String)
-    difficulty = Column(Integer)
-
-    def format(self):
-        return {
-            'id': self.id,
-            'question': self.question,
-            'answer': self.answer,
-            'category': self.category,
-            'difficulty': self.difficulty
-            }
 
 
 

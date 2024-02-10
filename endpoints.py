@@ -1,6 +1,6 @@
 from flask import jsonify
 from dataseed import seed_database
-from models import Question, Category, Quiz
+from models import Question, Category
 from base import app, db
 
 @app.route('/seed', methods=['GET'])
