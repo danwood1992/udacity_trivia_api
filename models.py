@@ -62,11 +62,12 @@ class Question(BaseModel):
     difficulty = Column(Integer)
     
     def format(self):
+        category = Category.query.get(self.category_id)
         return {
             'id': self.id,
             'question': self.question,
             'answer': self.answer,
-            'category': self.category_id,
+            'category': category.type,
             'wrong_answer1': self.wrong_answer1,
             'wrong_answer2': self.wrong_answer2,
             'wrong_answer3': self.wrong_answer3,
