@@ -1,4 +1,20 @@
 services:
+  trivia-db:
+    image: postgres:14.9
+    volumes:
+      - trivia_postgres_data:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    ports:
+      - "5432:5432"
+    networks:
+      - trivia-network
+    # healthcheck:
+    #   test: ["CMD-SHELL", "pg_isready -U postgres"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 5
+
   trivia-api:
     build:
       context: .
@@ -16,16 +32,6 @@ services:
     depends_on:
       - trivia-db
 
-  trivia-db:
-    image: postgres:14.9
-    volumes:
-      - trivia_postgres_data:/var/lib/postgresql/data
-    env_file:
-      - ./.env
-    ports:
-      - "5432:5432"
-    networks:
-      - trivia-network
       
   pgadmin:
     image: dpage/pgadmin4:latest
