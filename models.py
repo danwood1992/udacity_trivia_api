@@ -40,8 +40,6 @@ class BaseModel(db.Model):
     def count(self):
         return self.query.count()
             
-    def repr(self):
-        return f'{self.name}'
     
      
 class Question(BaseModel):
