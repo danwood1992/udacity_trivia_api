@@ -1,11 +1,17 @@
 from base import db
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, Integer
 
 class BaseModel(db.Model):
     __abstract__ = True
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False, unique=True)
 
     def add(self):
+        db.session.add(self)
+        db.session.commit()
+        if self.id:
+            return True
+        
+    def save(self):
         db.session.add(self)
         db.session.commit()
         if self.id:
@@ -39,6 +45,7 @@ class BaseModel(db.Model):
     
     def count(self):
         return self.query.count()
+    
             
     
      
@@ -53,6 +60,18 @@ class Question(BaseModel):
     wrong_answer2 = db.Column(db.String, nullable=False)
     wrong_answer3 = db.Column(db.String, nullable=False)
     difficulty = Column(Integer)
+    
+    def format(self):
+        return {
+            'id': self.id,
+            'question': self.question,
+            'answer': self.answer,
+            'category': self.category_id,
+            'wrong_answer1': self.wrong_answer1,
+            'wrong_answer2': self.wrong_answer2,
+            'wrong_answer3': self.wrong_answer3,
+            'difficulty': self.difficulty
+        }
 
   
 class Category(BaseModel):

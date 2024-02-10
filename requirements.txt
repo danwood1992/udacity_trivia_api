@@ -7,6 +7,7 @@ aniso8601
 python-dateutil
 Click
 flask_cors
+faker
 
 
 
