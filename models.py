@@ -50,6 +50,10 @@ class Question(BaseModel):
     question = db.Column(db.String, nullable=False)
     answer = db.Column(db.String, nullable=False)
     category = db.relationship('Category', backref='questions')
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
+    wrong_answer1 = db.Column(db.String, nullable=False)
+    wrong_answer2 = db.Column(db.String, nullable=False)
+    wrong_answer3 = db.Column(db.String, nullable=False)
     difficulty = Column(Integer)
 
   
