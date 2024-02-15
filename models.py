@@ -28,27 +28,7 @@ class BaseModel(db.Model):
         if self.id:
             return True
     
-    def all(self):
-        return self.query.all()
-    
-    def get(self, id):
-        return self.query.get(id)
-    
-    def first(self):
-        return self.query.first()
-    
-    def last(self):
-        return self.query.last()
-    
-    def filter(self, **kwargs):
-        return self.query.filter_by(**kwargs).all()
-    
-    def count(self):
-        return self.query.count()
-    
-            
-    
-     
+      
 class Question(BaseModel):
     __tablename__ = 'questions'
 
@@ -62,12 +42,11 @@ class Question(BaseModel):
     difficulty = Column(Integer)
     
     def format(self):
-        category = Category.query.get(self.category_id)
         return {
             'id': self.id,
             'question': self.question,
             'answer': self.answer,
-            'category': category.type,
+            'category': self.category.type,
             'wrong_answer1': self.wrong_answer1,
             'wrong_answer2': self.wrong_answer2,
             'wrong_answer3': self.wrong_answer3,

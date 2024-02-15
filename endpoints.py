@@ -43,11 +43,19 @@ def get_questions():
     questions = Question.query.all()
     formatted_questions = [question.format() for question in questions]
     
-    
     return jsonify({
         'no_questions': len(formatted_questions),
         'success': True,
         'questions': formatted_questions
+    })
+    
+@app.route('/firstquestion', methods=['GET'])
+def first_question():
+    first_question = Question.first()
+    
+    return jsonify({
+        'success': True,
+        'question': first_question
     })
     
 @app.route('/questions/<int:question_id>', methods=['GET'])

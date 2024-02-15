@@ -7,14 +7,14 @@ fake = Faker()
 
 
 def create_categories():
-    categories = ['Science', 'Art', 'Geography', 'History', 'Entertainment', 'Sports']
+    categories = ['Science', 'Art', 'Geography', 'History', 'Entertainment', 'Sports', 'Random', 'Math', 'English', 'Music']
     for category in categories:
         new_category = Category(type=category)
         new_category.add()
         
 def seed_database():
     create_categories()
-    for i in range(10):
+    for i in range(50):
         question = Question(
             question=fake.sentence(),
             answer=fake.word(),
