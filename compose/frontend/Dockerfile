@@ -1,0 +1,22 @@
+FROM node:16
+
+ENV NODE_ENV=development 
+
+WORKDIR /opt/trivia/frontend
+
+COPY ./frontend/package.json ./package.json
+COPY ./frontend/package-lock.json ./package-lock.json
+
+COPY ./frontend/ ./
+
+RUN npm install
+
+
+
+EXPOSE 3000
+
+CMD [ "npm", "start"]
+
+
+
+

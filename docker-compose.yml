@@ -9,12 +9,7 @@ services:
       - "5432:5432"
     networks:
       - trivia-network
-    # healthcheck:
-    #   test: ["CMD-SHELL", "pg_isready -U postgres"]
-    #   interval: 10s
-    #   timeout: 5s
-    #   retries: 5
-
+  
   trivia-api:
     build:
       context: .
@@ -25,12 +20,27 @@ services:
     env_file:
       - ./.env
     ports:
-      - "443:5125"
-      - "80:5125"
+      - "5125:5125"
     networks:
       - trivia-network
     depends_on:
       - trivia-db
+
+  trivia-frontend:
+    build:
+      context: .
+      dockerfile: ./compose/frontend/Dockerfile
+    volumes:
+      - .:/opt/trivia
+    env_file:
+      - ./.env
+    ports:
+      - "3000:3000"
+      - "80:3000"
+    networks:
+      - trivia-network
+    depends_on:
+      - trivia-api
 
       
   pgadmin:
