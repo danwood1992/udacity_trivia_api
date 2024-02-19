@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero-animation{
+    animation: slide 2s forwards; 
+  }
+
+.fade-in-1{
+    animation: fadeIn 2s forwards; 
+  }
+
+.fade-in-2{
+animation: fadeIn 3s forwards; 
+}
+
+.fade-in-3{
+animation: fadeIn 4s forwards; 
+}   
+
+.rotating{
+    animation: rotating 10s infinite linear; /* Adjust the duration and repeat as needed */
+  }
+ 
+
+@keyframes slide {
+    0% {
+        transform: translateX(-500px);
+    }
+    100% {
+        transform: translateX(0px);
+
+    }
+    }
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+
+    }
+    }
+
+@keyframes rotating {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+
+    }
+    }

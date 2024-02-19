@@ -2,6 +2,7 @@ from flask import jsonify, request
 from utils import seed_database
 from models import Question, Category
 from base import app, db
+import random
 
 @app.route('/seed', methods=['GET'])
 def seed():
@@ -33,8 +34,10 @@ def get_categories():
     formatted_categories = [category.format() for category in categories]
     
     return jsonify({
+        'categories': formatted_categories,
+        'no_categories': len(formatted_categories),
         'success': True,
-        'categories': formatted_categories
+        'randomcat': random.choice(formatted_categories)
     })
 
 
