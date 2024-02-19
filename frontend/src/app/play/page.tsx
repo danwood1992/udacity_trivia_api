@@ -12,7 +12,7 @@ export default function Page() {
   const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
   const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
 
-  function set() {
+  function start() {
     getQuestions().then((data) => {
       setQuestions(data.questions);
       console.log(data);
@@ -27,8 +27,6 @@ export default function Page() {
     setPageNumber(prevPageNumber => prevPageNumber - 1);
   }
 
-
-
   return (
     <>
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -36,7 +34,7 @@ export default function Page() {
         <p className="text-lg text-center mb-6">Play the game</p>
 
         <div className="flex justify-center mb-8">
-          <Button onClick={set} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Start</Button>
+          <Button onClick={start} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Start</Button>
         </div>
 
         <QuestionBlock currentQuestions={currentQuestions} />
