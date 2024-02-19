@@ -2,11 +2,15 @@
 import React, { useState } from 'react';
 import { Button } from '../../components/elements/Button';
 import { getQuestions } from '@/queries/getQuestions';
+import QuestionBlock from '@/components/blocks/QuestionBlock';
 
 export default function Page() {
   const [pageNumber, setPageNumber] = useState(1);
   const [questions, setQuestions] = useState([]);
-  const questionsPerPage = 10;
+  const questionsPerPage = 3;
+  const indexOfLastQuestion = pageNumber * questionsPerPage;
+  const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
+  const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
 
   function set() {
     getQuestions().then((data) => {
@@ -14,7 +18,7 @@ export default function Page() {
       console.log(data);
     });
   }
-
+  
   function incrementPage() { 
     setPageNumber(prevPageNumber => prevPageNumber + 1);
   }
@@ -23,45 +27,27 @@ export default function Page() {
     setPageNumber(prevPageNumber => prevPageNumber - 1);
   }
 
-  // Calculate the index of the first and last question on the current page
-  const indexOfLastQuestion = pageNumber * questionsPerPage;
-  const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
 
-  const currentQuestions = questions.slice(indexOfFirstQuestion, indexOfLastQuestion);
 
   return (
     <>
-      <h1>UdaciTrivia - Play</h1>
-      <p>Play the game</p>
-      <div className='container'>
-        <Button onClick={set} className='bg-olive'>Start</Button>
-      </div>
-      <p>Questions</p>
-    
-      <ul>
-        {currentQuestions.map((question, index) => (
-          <li key={index}>
-            <p>{question.question}</p>
-            {/* Combine all answers into a single array and shuffle them if needed */}
-            <ul>
-              {
-                // Assuming you want to randomize the answers
-                [question.answer, question.wrong_answer1, question.wrong_answer2, question.wrong_answer3]
-                  .sort(() => 0.5 - Math.random()) // This is a simple shuffle. For more complex data, consider a more robust shuffle method.
-                  .map((answer, answerIndex) => (
-                    <li key={answerIndex}>{answer}</li>
-                  ))
-              }
-            </ul>
-          </li>
-        ))}
-      </ul>
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold text-center mb-4">UdaciTrivia - Play</h1>
+        <p className="text-lg text-center mb-6">Play the game</p>
 
-      <div className='container'>
-        <Button onClick={decrementPage} className='bg-slate-700'>Previous</Button>
-        <Button onClick={incrementPage} className='bg-olive'>Next</Button>
+        <div className="flex justify-center mb-8">
+          <Button onClick={set} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Start</Button>
+        </div>
+
+        <QuestionBlock currentQuestions={currentQuestions} />
+
+        <div className="flex justify-between items-center mt-8">
+          <Button onClick={decrementPage} className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">Previous</Button>
+          <p className="text-lg">Page: {pageNumber}</p>
+          <Button onClick={incrementPage} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Next</Button>
+        </div>
       </div>
-      <p>Page: {pageNumber}</p>
     </>
+
   );
 }
