@@ -37,6 +37,7 @@ services:
     ports:
       - "3000:3000"
       - "80:3000"
+      - "8097:3000"
     networks:
       - trivia-network
     depends_on:
