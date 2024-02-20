@@ -9,7 +9,6 @@ export default function QuestionBlock({ currentQuestions }) {
 
   return (
     <div className="my-8">
-      <h2 className="text-2xl font-bold mb-4">Questions Block</h2>
       <ul className="space-y-6">
         {currentQuestions.map((question, questionIndex) => (
           <li key={questionIndex} className="bg-white shadow-md rounded-lg p-6">

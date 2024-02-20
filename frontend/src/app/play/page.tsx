@@ -7,6 +7,7 @@ import QuestionBlock from '@/components/blocks/QuestionBlock';
 export default function Page() {
   const [pageNumber, setPageNumber] = useState(1);
   const [questions, setQuestions] = useState([]);
+  const [started, setStarted] = useState(false);
   const questionsPerPage = 3;
   const indexOfLastQuestion = pageNumber * questionsPerPage;
   const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
@@ -14,9 +15,15 @@ export default function Page() {
 
   function start() {
     getQuestions().then((data) => {
+      setStarted(true);
       setQuestions(data.questions);
       console.log(data);
     });
+  }
+
+  function stop() {
+    setStarted(false);
+    setQuestions([]);
   }
   
   function incrementPage() { 
@@ -35,6 +42,7 @@ export default function Page() {
 
         <div className="flex justify-center mb-8">
           <Button onClick={start} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Start</Button>
+          <Button onClick={stop} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Stop</Button>
         </div>
 
         <QuestionBlock currentQuestions={currentQuestions} />
