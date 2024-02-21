@@ -2,6 +2,7 @@
 import { Container, Section, Row, Column } from '@/components/layout/Structures';
 import  Pagination from '@/components/elements/CenteredPagination';
 import React, { useState } from 'react';
+import Answer from '@/components/elements/Answer';
 
 interface NewPlaySectionProps {
     section_id: string;
@@ -14,11 +15,10 @@ return (
 
     <Section >
         <Container className='grid grid-cols-1 md:grid-cols-2 gap-2' >       
-                <div className="bg-green m-2 text-center p-6 rounded">Answer 1</div>
-                <div className="bg-green m-2 text-center p-6">Answer 2</div>
-                <div className="bg-green m-2 text-center p-6">Answer 1</div>
-                <div className="bg-green m-2 text-center p-6">Answer 2</div>
-              
+                <Answer answer="Answer 1"/>
+                <Answer answer="Answer 2"/>
+                <Answer answer="Answer 3"/>
+                <Answer answer="Answer 4"/>   
         </Container>
     </Section>
         
