@@ -1,5 +1,5 @@
 'use client'
-import { Container } from '@/components/layout/Structures';
+import { Container, Section, Row, Column } from '@/components/layout/Structures';
 import  Pagination from '@/components/elements/CenteredPagination';
 import React, { useState } from 'react';
 
@@ -12,13 +12,15 @@ export default function PlaySection({questionData, section_id}:NewPlaySectionPro
 
 return (
 
-
-        <Container id={section_id}>
-            <h1>+</h1>
-            <Pagination />
+    <Section >
+        <Container className='grid grid-cols-1 md:grid-cols-2 gap-2' >       
+                <div className="bg-green m-2 text-center p-6 rounded">Answer 1</div>
+                <div className="bg-green m-2 text-center p-6">Answer 2</div>
+                <div className="bg-green m-2 text-center p-6">Answer 1</div>
+                <div className="bg-green m-2 text-center p-6">Answer 2</div>
+              
         </Container>
-
-      
-
-)
+    </Section>
+        
+    )
 };

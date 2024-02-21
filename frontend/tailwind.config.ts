@@ -27,14 +27,8 @@ export default {
       },
       colors: {
 
-        'light-sand': '#f0e2cc',         
-        'sand': '#e1c699',
-        'dark-sand': '#9d8a6b',
-        'darker-sand': '#433b2d', 
-        'warm-gray': '#9d9087',  
         'olive': '#a8b07f',   
         'dusty-cedar': '#ac6b53', 
-        'hero-colour': '#b6a9a0',
         'pale-sky': '#6e828a',   
         'whisper-white': '#f5f3ee', 
         'clay-brown': '#b5a27f',    

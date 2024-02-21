@@ -1,26 +1,19 @@
-import clsx from 'clsx'
 
-interface FlexContainerProps extends React.ComponentPropsWithoutRef<'div'> {
-  items?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
-  justify?: 'start' | 'center' | 'end' | 'stretch';
+import React from 'react';
+import clsx from 'clsx';
+
+interface ContainerProps extends React.ComponentPropsWithoutRef<'div'>{
+  width?: string; 
 }
-
-
 
 export function Container({
   className,
-
-  items = 'center',
-  justify = 'center', 
+  width = '7',
   ...props
-}: FlexContainerProps) {
-
-  const itemsClass = items ? `items-${items}` : '';
-  const justifyClass = justify ? `justify-items-${justify}` : '';
-
+}: ContainerProps) {
   return (
     <div 
-      className={clsx('flex', itemsClass, justifyClass, className)}
+      className={clsx(`flex mx-auto max-w-${width}xl px-4 sm:px-6 lg:px-8`,className)}
       {...props}
     />
   );
@@ -39,18 +32,58 @@ export function Hero({
     )
     }
 
-export function Wrapper({
+export function Section({
     className,
     ...props
     }: React.ComponentPropsWithoutRef<'div'>) {
     return (
-        <div
-        className={clsx('mx-auto px-4', className)}
+        <section
+        className={clsx('section', className)}
         {...props}
         />
     )
     }
 
+export function Page({
+    className,
+    ...props
+    }: React.ComponentPropsWithoutRef<'div'>) {
+    return (
+        <div
+        className={clsx('page', className)}
+        {...props}
+        />
+    )
+    }
+
+export function Row(
+    {
+        classsName,
+        ...props
+    }: React.ComponentPropsWithoutRef<'div'>
+) {
+    return (
+        <div
+        className={clsx('flex-row', className)}
+        {...props}
+        />
+    )
+}
+
+
+export function Column(
+    {
+        className,
+        ...props
+    }: React.ComponentPropsWithoutRef<'div'>
+) {
+    return (
+        <div
+        className={clsx('flex-col', className)}
+        {...props}
+        />
+    )
+}
 
 
 

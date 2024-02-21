@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Structure */
+.section{
+    @apply px-4;
+}
+.container{
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+
+/* Custom CSS */
 .hero-animation{
     animation: slide 2s forwards; 
   }
