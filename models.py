@@ -39,18 +39,23 @@ class Question(BaseModel):
     wrong_answer1 = db.Column(db.String, nullable=False)
     wrong_answer2 = db.Column(db.String, nullable=False)
     wrong_answer3 = db.Column(db.String, nullable=False)
-    difficulty = Column(Integer)
+    difficulty = db.Column(db.Integer, nullable=False)
     
     def format(self):
         return {
             'id': self.id,
             'question': self.question,
-            'answer': self.answer,
             'category': self.category.type,
-            'wrong_answer1': self.wrong_answer1,
-            'wrong_answer2': self.wrong_answer2,
-            'wrong_answer3': self.wrong_answer3,
-            'difficulty': self.difficulty
+            'options': [
+                {'text': self.answer, 'is_correct': True},
+                {'text': self.wrong_answer1, 'is_correct': False},
+                {'text': self.wrong_answer2, 'is_correct': False},
+                {'text': self.wrong_answer3, 'is_correct': False}
+            ],
+            'difficulty': self.difficulty,
+            'answered': False,
+            'answered_correctly': False,
+              
         }
 
   

@@ -6,9 +6,7 @@ export async function getQuestions() {
         throw new Error('Network response was not ok');
     }
     
-    const categories = await response.json();
+    const questions = await response.json();
   
-    return categories;
-    
-
+    return questions;
 }
