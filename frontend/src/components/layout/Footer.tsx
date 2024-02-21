@@ -1,7 +1,4 @@
-import Link from 'next/link'
-import { Container } from '@/components/elements/Container'
-import { NavLink } from '@/components/NavLink'
-import Image from 'next/image'
+import { Container } from './Structures'
 
 export function Footer() {
   return (
