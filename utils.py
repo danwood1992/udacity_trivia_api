@@ -14,18 +14,20 @@ def create_categories():
         
 def seed_database():
     create_categories()
+    category_ids = [category.id for category in Category.query.all()]
     for i in range(50):
         question = Question(
             question=fake.sentence(),
             answer=fake.word(),
-            category_id=random.randint(1, 6),
+            category_id=random.choice(category_ids),
             wrong_answer1=fake.word(),
             wrong_answer2=fake.word(),
             wrong_answer3=fake.word()
         )
         question.add()
         
-    print('Database seeded')
+
+    
 
 
     

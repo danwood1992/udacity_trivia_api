@@ -12,12 +12,6 @@ class BaseModel(db.Model):
         db.session.commit()
         if self.id:
             return True
-        
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-        if self.id:
-            return True
     
     def delete(self):
         db.session.delete(self)
@@ -48,11 +42,10 @@ class Question(BaseModel):
     question = db.Column(db.String, nullable=False)
     answer = db.Column(db.String, nullable=False)
     category = db.relationship('Category', backref='questions')
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
+    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey('categories.id'), nullable=False)
     wrong_answer1 = db.Column(db.String, nullable=False)
     wrong_answer2 = db.Column(db.String, nullable=False)
     wrong_answer3 = db.Column(db.String, nullable=False)
-    difficulty = db.Column(db.Integer, nullable=False)
     
     def format(self):
         return {
@@ -65,9 +58,8 @@ class Question(BaseModel):
                 {'text': self.wrong_answer2, 'is_correct': False},
                 {'text': self.wrong_answer3, 'is_correct': False}
             ],
-            'difficulty': self.difficulty,
-            'answered': False,
-            'answered_correctly': False,
+            'answered': False, # Placeholder for the front end
+            'answered_correctly': False, # Placeholder for the front end
               
         }
     
@@ -99,9 +91,10 @@ class Quiz(BaseModel):
 class QuizQuestion(BaseModel):
     __tablename__ = 'quiz_questions'
     
+    quiz = db.relationship('Quiz', backref='questions')
     quiz_id = db.Column(UUID(as_uuid=True), db.ForeignKey('quizzes.id'), primary_key=True)
-    question_id = db.Column(db.Integer, db.ForeignKey('questions.id'), primary_key=True)
     question = db.relationship('Question', backref='quizzes')
+    question_id = db.Column(UUID(as_uuid=True), db.ForeignKey('questions.id'), primary_key=True)
     
     
     
