@@ -1,26 +1,20 @@
-'use client'
-import { Container, Section, Row, Column } from '@/components/layout/Structures';
-import  Pagination from '@/components/elements/CenteredPagination';
-import React, { useState } from 'react';
-import Answer from '@/components/elements/Answer';
+import { Section } from '@/components/layout/Structures';
+import QuestionsBlock from '@/components/blocks/QuestionsBlock';
 
 interface NewPlaySectionProps {
     section_id: string;
-    questionData: any;
+    quizData: any;
 }
 
-export default function PlaySection({questionData, section_id}:NewPlaySectionProps) { 
+export default function PlaySection({quizData, section_id}:NewPlaySectionProps) { 
+  const questionData = quizData;
 
-return (
-
-    <Section >
-        <Container className='grid grid-cols-1 md:grid-cols-2 gap-2' >       
-                <Answer answer="Answer 1"/>
-                <Answer answer="Answer 2"/>
-                <Answer answer="Answer 3"/>
-                <Answer answer="Answer 4"/>   
-        </Container>
-    </Section>
-        
-    )
+  return (
+      <Section id={section_id}>
+        <QuestionsBlock questionData={questionData}/>
+      </Section>
+    )         
 };
+
+
+
