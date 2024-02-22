@@ -28,18 +28,6 @@ def reset():
     })
         
 
-@app.route('/categories', methods=['GET'])
-def get_categories():
-    categories = Category.query.all()
-    formatted_categories = [category.format() for category in categories]
-    
-    return jsonify({
-        'categories': formatted_categories,
-        'no_categories': len(formatted_categories),
-        'success': True,
-        'randomcat': random.choice(formatted_categories)
-    })
-
 
 @app.route('/questions', methods=['GET'])
 def get_questions():
@@ -52,18 +40,10 @@ def get_questions():
         'questions': formatted_questions
     })
     
-@app.route('/firstquestion', methods=['GET'])
-def first_question():
-    first_question = Question.first()
     
-    return jsonify({
-        'success': True,
-        'question': first_question
-    })
-    
-@app.route('/questions/<int:question_id>', methods=['GET'])
+@app.route('/questions/<uuid:question_id>', methods=['GET'])
 def get_question(question_id):
-    question = Question.get(question_id)
+    question = Question.query.get(question_id)
     
     return jsonify({
         'success': True,
