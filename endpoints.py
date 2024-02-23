@@ -12,6 +12,7 @@ def get_quizzes():
     return jsonify({
         'message': 'hello from quizzes update new cache',
         'no_quizzes': len(quizzes),
+        'no_questions': len(Question.query.all()),
         'success': True,
         'quizzes': [quiz.format() for quiz in quizzes]
     })

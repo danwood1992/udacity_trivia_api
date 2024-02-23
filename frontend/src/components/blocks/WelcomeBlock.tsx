@@ -9,9 +9,12 @@ interface WelcomeBlockProps {
 export default function WelcomeBlock({quizData}:WelcomeBlockProps) {
   console.log('WelcomeBlock: quizData:', quizData)
   return(
-    <Container className='grid grid-cols-1 md:grid-cols-2 gap-2' >       
+    <Container className='grid justify-items-center border-b p-6'>
+      <h1 className='text-xl underline mb-2'>Welcome to Udacitrivia</h1>    
       <ActiveQuizzes no_quizzes={quizData.no_quizzes} />
-      <NoOfQuestions no_quizzes={quizData.no_questions} />
+      <NoOfQuestions no_questions={quizData.no_questions} />
+
+
     </Container>
   )
 }

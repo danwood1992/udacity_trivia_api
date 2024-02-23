@@ -1,11 +1,9 @@
 interface NoOfQuestionsProps {
-    no_quizzes: string;
+    no_questions: string;
 }
 
-export default function NoOfQuestions({no_quizzes}: NoOfQuestionsProps) {
+export default function NoOfQuestions({no_questions}: NoOfQuestionsProps) {
     return (
-        <div className="m-2 text-center p-2 rounded">
-            <p>No of Questions{no_quizzes}</p>
-        </div>
+            <div>No of Questions{no_questions}</div>
     )
 }

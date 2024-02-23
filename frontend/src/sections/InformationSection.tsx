@@ -10,9 +10,9 @@ export default function InformationSection({quizData, section_id}:InformationSec
   console.log('Information: quizData:', quizData)
 
   return (
-      <Section id={section_id}>
+      <Section id={section_id} >
             <WelcomeBlock quizData={quizData} />
-            
+
 
       </Section>
     )         
