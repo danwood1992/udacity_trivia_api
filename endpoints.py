@@ -50,9 +50,9 @@ def get_question(question_id):
         'question': question.format()
     })
     
-@app.route('/questions/<int:question_id>', methods=['DELETE'])
+@app.route('/questions/<uuid:question_id>', methods=['DELETE'])
 def delete_question(question_id):
-    question = Question.get(question_id)
+    question = Question.query.get(question_id)
     question.delete()
     
     return jsonify({
