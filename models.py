@@ -62,6 +62,8 @@ class Question(BaseModel):
             'answered_correctly': False,
               
         }
+
+
     
 class Quiz(BaseModel):
     __tablename__ = 'quizzes'
@@ -69,13 +71,19 @@ class Quiz(BaseModel):
     name = db.Column(db.String, nullable=False)
     time_limit = db.Column(db.Integer, nullable=False)
     
+    def formatted_questions(self):
+       
+        return [quiz_question.question.format() for quiz_question in self.questions]
+    
+    
     def format(self):
+        
         return {
             'id': self.id,
             'name': self.name,
             'link': f'/quizzes/{self.id}', 
             'time_limit': self.time_limit,
-            'questions': [question.format() for question in self.questions]
+            'questions': self.formatted_questions()
         }
         
     def add_question(self, question):

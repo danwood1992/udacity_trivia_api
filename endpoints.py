@@ -24,6 +24,7 @@ def seed():
         })
     else:
         seed_database()
+        
         return jsonify({
             'success': True,
             'message': 'Database seeded'
