@@ -58,8 +58,8 @@ class Question(BaseModel):
                 {'text': self.wrong_answer2, 'is_correct': False},
                 {'text': self.wrong_answer3, 'is_correct': False}
             ],
-            'answered': False, # Placeholder for the front end
-            'answered_correctly': False, # Placeholder for the front end
+            'answered': False,
+            'answered_correctly': False,
               
         }
     
@@ -73,6 +73,7 @@ class Quiz(BaseModel):
         return {
             'id': self.id,
             'name': self.name,
+            'link': f'/quizzes/{self.id}', 
             'time_limit': self.time_limit,
             'questions': [question.format() for question in self.questions]
         }

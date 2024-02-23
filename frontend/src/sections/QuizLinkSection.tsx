@@ -1,5 +1,5 @@
 import { Section } from '@/components/layout/Structures';
-import QuestionsBlock from '@/components/blocks/QuestionsBlock';
+import QuizLinkBlock from '@/components/blocks/QuizLinkBlock';
 
 interface QuizLinkSectionProps {
     section_id: string;
@@ -7,12 +7,12 @@ interface QuizLinkSectionProps {
 }
 
 export default function QuizLinkSection({quizData, section_id}:QuizLinkSectionProps) { 
-  const questionData = quizData;
   console.log('server side rendering')
 
   return (
       <Section id={section_id}>
-        <QuestionsBlock questionData={questionData}/>
+            <QuizLinkBlock quizlinks={quizData.link} />
+            
       </Section>
     )         
 };
