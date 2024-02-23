@@ -7,12 +7,11 @@ interface QuizLinkSectionProps {
 }
 
 export default function QuizLinkSection({quizData, section_id}:QuizLinkSectionProps) { 
-  console.log('server side rendering')
+  console.log('QuizLinkSection: quizData:', quizData)
 
   return (
       <Section id={section_id}>
-            <QuizLinkBlock quizlinks={quizData.link} />
-            
+            <QuizLinkBlock quizData={quizData} />
       </Section>
     )         
 };

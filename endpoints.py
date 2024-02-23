@@ -1,8 +1,19 @@
 from flask import jsonify, request
 from utils import seed_database
-from models import Question, Category
+from models import Question, Category, Quiz
 from base import app, db
 import random
+
+@app.route('/quizzes', methods=['GET'])
+def get_quizzes():
+    quizzes = Quiz.query.all()
+    
+    return jsonify({
+        'no_quizzes': len(quizzes),
+        'success': True,
+        'quizzes': [quiz.format() for quiz in quizzes]
+    })
+    
 
 @app.route('/seed', methods=['GET'])
 def seed():
@@ -71,44 +82,7 @@ def add_question():
         'message': 'Question added'
     })
     
-@app.route('/questions/<int:question_id>', methods=['PATCH'])
-def update_question(question_id):
-    data = request.get_json()
-    question = Question.get(question_id)
-    question.question = data['question']
-    question.answer = data['answer']
-    question.category_id = data['category_id']
-    question.wrong_answer1 = data['wrong_answer1']
-    question.wrong_answer2 = data['wrong_answer2']
-    question.wrong_answer3 = data['wrong_answer3']
-    question.update()
-    
-    return jsonify({
-        'success': True,
-        'message': 'Question updated'
-    })
-    
-@app.route('/categories/<int:category_id>/questions', methods=['GET'])
-def get_category_questions(category_id):
-    questions = Question.filter(category_id=category_id)
-    formatted_questions = [question.format() for question in questions]
-    
-    return jsonify({
-        'success': True,
-        'questions': formatted_questions
-    })
-    
-@app.route('/categories/<int:category_id>/questions', methods=['POST'])
-def add_category_question(category_id):
-    data = request.get_json()
-    question = Question(question=data['question'], answer=data['answer'], category_id=category_id, wrong_answer1=data['wrong_answer1'], wrong_answer2=data['wrong_answer2'], wrong_answer3=data['wrong_answer3'])
-    question.save()
-    
-    return jsonify({
-        'success': True,
-        'message': 'Question added'
-    })
-    
+
 
 
         
