@@ -1,5 +1,5 @@
 from base import db  # Import your database setup
-from models import Question, Category  # Import your models
+from models import Question, Category, Quiz, QuizQuestion # Import your models
 from faker import Faker
 import random
 
@@ -11,9 +11,17 @@ def create_categories():
     for category in categories:
         new_category = Category(type=category)
         new_category.add()
-        
-def seed_database():
-    create_categories()
+
+def create_quizzes():
+    quizzes = ['fun quiz', 'hard quiz']
+    questions = Question.query.all()
+    for quiz in quizzes:
+        new_quiz = Quiz(name=quiz, time_limit=10)
+        new_quiz.add()
+        for question in questions:
+            new_quiz.add_question(question)
+
+def create_questions():
     category_ids = [category.id for category in Category.query.all()]
     for i in range(50):
         question = Question(
@@ -25,7 +33,14 @@ def seed_database():
             wrong_answer3=fake.word()
         )
         question.add()
+       
         
+        
+        
+def seed_database():
+    create_categories()
+    create_questions() 
+    create_quizzes()
 
     
 
