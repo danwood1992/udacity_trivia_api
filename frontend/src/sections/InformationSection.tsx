@@ -12,6 +12,7 @@ export default function InformationSection({quizData, section_id}:InformationSec
   return (
       <Section id={section_id}>
             <WelcomeBlock quizData={quizData} />
+            
 
       </Section>
     )         
