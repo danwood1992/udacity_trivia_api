@@ -7,11 +7,19 @@ import random
 @app.route('/quizzes', methods=['GET'])
 def get_quizzes():
     quizzes = Quiz.query.all()
+    print("quizes endpoint")
     
     return jsonify({
+        'message': 'hello from quizzes update new cache',
         'no_quizzes': len(quizzes),
         'success': True,
         'quizzes': [quiz.format() for quiz in quizzes]
+    })
+
+@app.route('/test', methods=['GET'])
+def test():
+    return jsonify({
+        'message': 'hello from test'
     })
     
 

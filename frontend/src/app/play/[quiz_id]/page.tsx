@@ -1,12 +1,14 @@
 import PlaySection from "@/sections/PlaySection";
-import getQuestions from "@/queries/getQuestions";
+import QuizLinkSection from "@/sections/QuizLinkSection";
+import getQuizData from "@/queries/getQuizData";
 
-export default function Page() {
-  const quizData = getQuestions();
-  
+export default async function Page() {
+  const quizData = await getQuizData();
+  console.log('Page: quizData:', quizData)
   return (
     <>
       <PlaySection section_id="play-section-1" quizData={quizData} />
+      <QuizLinkSection section_id="play-section-1" quizData={quizData} />
     </>
   );
 }

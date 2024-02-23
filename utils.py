@@ -5,7 +5,6 @@ import random
 
 fake = Faker()
 
-
 def create_categories():
     categories = ['Science', 'Art', 'Geography', 'History', 'Entertainment', 'Sports', 'Random', 'Math', 'English', 'Music']
     for category in categories:
@@ -33,10 +32,7 @@ def create_questions():
             wrong_answer3=fake.word()
         )
         question.add()
-       
-        
-        
-        
+           
 def seed_database():
     create_categories()
     create_questions() 
