@@ -12,10 +12,11 @@ def create_categories():
         new_category.add()
 
 def create_quizzes():
-    quizzes = ['fun quiz', 'hard quiz']
+    quizzes = ['fun quiz', 'hard quiz', 'easy quiz', 'random quiz', 'science quiz', 'history quiz', 'sports quiz', 'music quiz', 'art quiz', 'geography quiz']
     questions = Question.query.all()
     for quiz in quizzes:
-        new_quiz = Quiz(name=quiz, time_limit=10)
+        print("creating quiz")
+        new_quiz = Quiz(name=quiz, time_limit=random.randint(10, 60))
         new_quiz.add()
         for question in questions:
             new_quiz.add_question(question)

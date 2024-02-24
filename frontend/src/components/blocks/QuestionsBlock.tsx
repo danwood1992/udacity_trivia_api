@@ -8,7 +8,7 @@ interface QuestionsBlockProps {
 export default function QuestionBlock({questionData}:QuestionsBlockProps) {
 
   return(
-    <Container className='grid grid-cols-1 md:grid-cols-2 gap-2' >       
+    <Container className='grid grid-cols-1 md:grid-cols-2 gap-2 p-8' >       
       <Answer answer="Answer 1"/>
       <Answer answer="Answer 2"/>
       <Answer answer="Answer 3"/>
