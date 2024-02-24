@@ -9,7 +9,7 @@ export function Header() {
     <header className="z-100 bg-pale-sky pb-6 pt-2 text-center">
       <Container>
         <nav className="relative z-50 flex justify-between">
-          <Container items='center' justify='center'>
+          <Container >
             <Link href="/" aria-label="Home" className='rotating'>
               <Image src="/images/science.svg" width={45} height={45} alt="rotating" />  
             </Link>

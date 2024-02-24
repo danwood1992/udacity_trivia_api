@@ -11,6 +11,7 @@ export default function QuizLinkSection({quizData, section_id}:QuizLinkSectionPr
 
   return (
       <Section id={section_id} >
+        <div className='text-center text-xl p-4'>Click On A Quiz To Play</div>
             <QuizLinkBlock quizData={quizData} />
       </Section>
     )         
