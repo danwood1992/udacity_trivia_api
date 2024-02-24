@@ -8,9 +8,9 @@ interface QuizLinksBlockProps {
 export default function QuizLinkBlock({quizData}:QuizLinksBlockProps) {
 
   return(
-    <Container className='grid grid-cols-1 md:grid-cols-2 gap-2' >       
+    <Container className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2' >       
         {quizData.quizzes.map((quiz: any) => (
-            <QuizLink key={quiz.id} link={quiz.link} name={quiz.name} />
+            <QuizLink key={quiz.id} link={quiz.link} name={quiz.name} time={quiz.time_limit} />
         ))}
     
     </Container>

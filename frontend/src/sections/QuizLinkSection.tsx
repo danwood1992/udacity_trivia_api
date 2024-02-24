@@ -10,7 +10,7 @@ export default function QuizLinkSection({quizData, section_id}:QuizLinkSectionPr
   console.log('QuizLinkSection: quizData:', quizData)
 
   return (
-      <Section id={section_id}>
+      <Section id={section_id} >
             <QuizLinkBlock quizData={quizData} />
       </Section>
     )         
