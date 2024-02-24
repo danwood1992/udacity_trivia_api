@@ -4,6 +4,6 @@ interface NoOfQuestionsProps {
 
 export default function NoOfQuestions({no_questions}: NoOfQuestionsProps) {
     return (
-            <div>No of Questions{no_questions}</div>
+            <div className="border rounded p-6 bg-white">Questions In Bank: {no_questions}</div>
     )
 }

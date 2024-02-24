@@ -7,8 +7,8 @@ export default async function Page() {
   console.log('Page: quizData:', quizData)
   return (
     <>
-      <InformationSection section_id="play-section-1" quizData={quizData} />
       <QuizLinkSection section_id="play-section-1" quizData={quizData} />
+      <InformationSection section_id="information-section" quizData={quizData} />
     </>
   );
 }

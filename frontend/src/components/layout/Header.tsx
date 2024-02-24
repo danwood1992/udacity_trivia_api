@@ -6,7 +6,7 @@ import Image from 'next/image'
 export function Header() {
   
   return (
-    <header className="z-100 bg-pale-sky pb-6 pt-2 text-center">
+    <header className="z-100 pb-6 pt-2 text-center">
       <Container>
         <nav className="relative z-50 flex justify-between">
           <Container >

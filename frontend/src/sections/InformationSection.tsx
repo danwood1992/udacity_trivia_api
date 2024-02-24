@@ -15,7 +15,7 @@ export default function InformationSection({quizData, section_id}:InformationSec
       <Section id={section_id} >
             <WelcomeBlock quizData={quizData} />
             {/* to be a block */}
-            <Container className='grid justify-items-center border rounded p-8 '>
+            <Container className='grid grid-cols-2 justify-items-center border rounded p-8 bg-slate-400 shadow-xl'>
               <ActiveQuizzes no_quizzes={quizData.no_quizzes} />
               <NoOfQuestions no_questions={quizData.no_questions} />
             </Container>
