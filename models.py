@@ -81,7 +81,7 @@ class Quiz(BaseModel):
         return {
             'id': self.id,
             'name': self.name,
-            'link': f'play/{self.id}', 
+            'link': f'/play/{self.id}', 
             'time_limit': self.time_limit,
             'questions': self.formatted_questions()
         }
