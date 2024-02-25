@@ -9,8 +9,8 @@ export default function QuizMetaBlock({quizData}:QuizMetaBlockProps) {
 
   return(
     <Container className='items-center border rounded-xl p-4 bg-slate-400 shadow-xl m-4'>
-      <QuizMetaItem text={quizData.no_quizzes} />
-      <QuizMetaItem text={quizData.no_questions} />
+      <QuizMetaItem text={`Current Quizzes: ${quizData.no_quizzes}` }/>
+      <QuizMetaItem text={`Current Questions: ${quizData.no_questions}`} />
     </Container>
   )
 }

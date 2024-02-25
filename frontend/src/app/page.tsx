@@ -11,7 +11,6 @@ export default async function Page() {
     <PageWrapper>
       <IndexHeadingSection section_id="index-heading-section" quizData={quizData} />
       <QuizLinkSection section_id="play-section-1" quizData={quizData} />
-      <InformationSection section_id="information-section" quizData={quizData} />
     </PageWrapper>
   );
 }
