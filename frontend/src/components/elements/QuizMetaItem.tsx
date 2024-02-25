@@ -5,7 +5,7 @@ interface ActiveQuizzesProps {
 export default function ActiveQuizzes({no_quizzes}: ActiveQuizzesProps) {
     return (
   
-            <div className="border rounded p-6 bg-white">No Of Quizzes: {no_quizzes}</div>
+            <div className="border rounded p-3 m-3 bg-white">No Of Quizzes: {no_quizzes}</div>
         
     )
 }

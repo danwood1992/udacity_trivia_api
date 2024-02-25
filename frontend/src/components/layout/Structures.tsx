@@ -44,7 +44,7 @@ export function Section({
     )
     }
 
-export function Page({
+export function PageWrapper({
     className,
     ...props
     }: React.ComponentPropsWithoutRef<'div'>) {
@@ -56,34 +56,7 @@ export function Page({
     )
     }
 
-export function Row(
-    {
-        classsName,
-        ...props
-    }: React.ComponentPropsWithoutRef<'div'>
-) {
-    return (
-        <div
-        className={clsx('flex-row', className)}
-        {...props}
-        />
-    )
-}
 
-
-export function Column(
-    {
-        className,
-        ...props
-    }: React.ComponentPropsWithoutRef<'div'>
-) {
-    return (
-        <div
-        className={clsx('flex-col', className)}
-        {...props}
-        />
-    )
-}
 
 
 
