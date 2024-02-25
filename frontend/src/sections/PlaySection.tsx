@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { Section } from '@/components/layout/Structures';
+import { SectionHeading } from '@/components/elements/Headings';
 import QuestionsBlock from '@/components/blocks/QuestionsBlock';
 
 interface NewPlaySectionProps {
@@ -6,20 +8,24 @@ interface NewPlaySectionProps {
     quizData: any;
 }
 
-export default function PlaySection({quizData, section_id}:NewPlaySectionProps) { 
+export default function PlaySection({ quizData, section_id }: NewPlaySectionProps) {
   const questionData = quizData.quiz.questions;
-  console.log('PlaySection quizdata questions', quizData.quiz.questions);
-  console.log('PlaySection quizID', quizData.quiz.id);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const currentQuestion = questionData[currentQuestionIndex];
 
-
+  const NextQuestion = () => {
+    const nextQuestionIndex = currentQuestionIndex + 1 < questionData.length ? currentQuestionIndex + 1 : currentQuestionIndex;
+    setCurrentQuestionIndex(nextQuestionIndex);
+  };
 
   return (
-      <Section id={section_id}>
-        <QuestionsBlock questionData={questionData}/>
-        <h1>Quiz id = </h1>
-      </Section>
-    )         
-};
+    <Section id={section_id}>
+      <SectionHeading text={quizData.quiz.name}></SectionHeading>
+      <QuestionsBlock currentQuestion={currentQuestion}/>
+      <button onClick={NextQuestion}>Next</button>
+    </Section>
+  );
+}
 
 
 

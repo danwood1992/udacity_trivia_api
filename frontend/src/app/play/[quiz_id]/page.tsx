@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function Page() {
   let { quiz_id } = useParams();
-  const [quizData, setQuizData] = useState(null); // Initialize state to hold fetched data
+  const [quizData, setQuizData] = useState(null);
 
   useEffect(() => {
     const fetchQuizData = async () => {

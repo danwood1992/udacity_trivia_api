@@ -1,12 +1,12 @@
 from flask import jsonify, request
 from utils import seed_database
-from models import Question, Category, Quiz
+from models import Question, Quiz
 from base import app, db
-import random
 
 @app.route('/quiz/<uuid:quiz_id>/play', methods=['GET'])
 def play_quiz(quiz_id):
     quiz = Quiz.query.get(quiz_id)
+    print("play quiz endpoint, getting quiz: ", quiz.name)
     if quiz is None:
         return jsonify({
             'success': False,
