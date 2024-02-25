@@ -19,7 +19,6 @@ def play_quiz(quiz_id):
             'quiz': quiz.format()
         })
 
-
 @app.route('/quizzes', methods=['GET'])
 def get_quizzes():
     quizzes = Quiz.query.all()

@@ -36,6 +36,10 @@ export default {
         'ebony': '#A0522D',
         'green': '#006400',
         'light-green': '#00FF00',
+        'dark-blue': '#003366',
+        'white': '#FFFFFF',
+
+        
       },
       fontFamily: {
         sans: 'var(--font-inter)',

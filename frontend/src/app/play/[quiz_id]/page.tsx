@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from 'react';
 
 export default function Page() {
-  let { quiz_id } = useParams();
+  let { quiz_id }:any = useParams();
   const [quizData, setQuizData] = useState(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Page() {
   }, [quiz_id]);
 
   if (quizData === null) {
-    return <div>Loading...</div>; // Show loading state or spinner
+    return <div>Loading...</div>;
   }
 
   return (
