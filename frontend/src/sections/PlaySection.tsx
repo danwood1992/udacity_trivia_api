@@ -7,12 +7,16 @@ interface NewPlaySectionProps {
 }
 
 export default function PlaySection({quizData, section_id}:NewPlaySectionProps) { 
-  const questionData = quizData;
-  console.log('server side rendering')
+  const questionData = quizData.quiz.questions;
+  console.log('PlaySection quizdata questions', quizData.quiz.questions);
+  console.log('PlaySection quizID', quizData.quiz.id);
+
+
 
   return (
       <Section id={section_id}>
         <QuestionsBlock questionData={questionData}/>
+        <h1>Quiz id = </h1>
       </Section>
     )         
 };

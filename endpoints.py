@@ -4,6 +4,22 @@ from models import Question, Category, Quiz
 from base import app, db
 import random
 
+@app.route('/quiz/<uuid:quiz_id>/play', methods=['GET'])
+def play_quiz(quiz_id):
+    quiz = Quiz.query.get(quiz_id)
+    if quiz is None:
+        return jsonify({
+            'success': False,
+            'message': 'Quiz not found'
+        })
+    else:
+        return jsonify({
+            'success': True,
+            'message': 'Quiz found',
+            'quiz': quiz.format()
+        })
+
+
 @app.route('/quizzes', methods=['GET'])
 def get_quizzes():
     quizzes = Quiz.query.all()
@@ -50,48 +66,6 @@ def reset():
         
 
 
-@app.route('/questions', methods=['GET'])
-def get_questions():
-    questions = Question.query.all()
-    formatted_questions = [question.format() for question in questions]
-    
-    return jsonify({
-        'no_questions': len(formatted_questions),
-        'success': True,
-        'questions': formatted_questions
-    })
-    
-    
-@app.route('/questions/<uuid:question_id>', methods=['GET'])
-def get_question(question_id):
-    question = Question.query.get(question_id)
-    
-    return jsonify({
-        'success': True,
-        'question': question.format()
-    })
-    
-@app.route('/questions/<uuid:question_id>', methods=['DELETE'])
-def delete_question(question_id):
-    question = Question.query.get(question_id)
-    question.delete()
-    
-    return jsonify({
-        'success': True,
-        'message': 'Question deleted'
-    })
-    
-@app.route('/questions', methods=['POST'])
-def add_question():
-    data = request.get_json()
-    question = Question(question=data['question'], answer=data['answer'], category_id=data['category_id'], wrong_answer1=data['wrong_answer1'], wrong_answer2=data['wrong_answer2'], wrong_answer3=data['wrong_answer3'])
-    question.save()
-    
-    return jsonify({
-        'success': True,
-        'message': 'Question added'
-    })
-    
 
 
 

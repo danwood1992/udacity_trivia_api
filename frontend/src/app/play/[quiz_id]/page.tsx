@@ -1,14 +1,33 @@
+'use client'
 import PlaySection from "@/sections/PlaySection";
-import QuizLinkSection from "@/sections/QuizLinkSection";
 import getQuizData from "@/queries/getQuizData";
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from 'react';
 
-export default async function Page() {
-  const quizData = await getQuizData();
-  console.log('Page: quizData:', quizData)
+export default function Page() {
+  let { quiz_id } = useParams();
+  const [quizData, setQuizData] = useState(null); // Initialize state to hold fetched data
+
+  useEffect(() => {
+    const fetchQuizData = async () => {
+      try {
+        const data = await getQuizData({ quiz_id });
+        setQuizData(data);
+      } catch (error) {
+        console.error("Failed to fetch quiz data:", error);
+      }
+    };
+
+    fetchQuizData();
+  }, [quiz_id]);
+
+  if (quizData === null) {
+    return <div>Loading...</div>; // Show loading state or spinner
+  }
+
   return (
     <>
       <PlaySection section_id="play-section-1" quizData={quizData} />
-      <QuizLinkSection section_id="play-section-1" quizData={quizData} />
     </>
   );
 }

@@ -1,5 +1,9 @@
-export default async function getQuizData() {
-    const response = await fetch('http://trivia-api:5125/quizzes', { next: { revalidate: 60 } })
+interface QuizData {
+    quiz_id: string;
+  }
+
+export default async function getQuizData({quiz_id}: QuizData) {
+    const response = await fetch(`http://localhost:5125/quiz/${quiz_id}/play`, { next: { revalidate: 60 } })
     
     if (!response.ok) {
       throw new Error('Failed to fetch data')
