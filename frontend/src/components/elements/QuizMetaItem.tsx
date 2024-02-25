@@ -1,11 +1,9 @@
-interface ActiveQuizzesProps {
-    no_quizzes: string;
+interface QuizMetaItemProps {
+    text: string;
 }
 
-export default function ActiveQuizzes({no_quizzes}: ActiveQuizzesProps) {
+export default function QuizMetaItem({text}: QuizMetaItemProps) {
     return (
-  
-            <div className="border rounded p-3 m-3 bg-white">No Of Quizzes: {no_quizzes}</div>
-        
+            <div className="border rounded p-3 m-3 bg-white">{text}</div>  
     )
 }
