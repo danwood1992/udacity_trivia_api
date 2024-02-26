@@ -53,13 +53,13 @@ class Question(BaseModel):
             'question': self.question,
             'category': self.category.type,
             'options': [
-                {'text': self.answer, 'is_correct': True},
-                {'text': self.wrong_answer1, 'is_correct': False},
-                {'text': self.wrong_answer2, 'is_correct': False},
-                {'text': self.wrong_answer3, 'is_correct': False}
+                {'text': self.answer, 'is_clicked': False},
+                {'text': self.wrong_answer1, 'is_clicked': False},
+                {'text': self.wrong_answer2, 'is_clicked': False},
+                {'text': self.wrong_answer3, 'is_clicked': False}
             ],
-            'answered': False,
-            'answered_correctly': False,
+          
+            
               
         }
 
