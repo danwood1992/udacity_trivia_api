@@ -3,10 +3,17 @@ import { Container } from '@/components/layout/Structures';
 import Answer from '@/components/elements/Answer';
 import { BlockHeading } from '../elements/Headings';
 import { getNextQuestionIndex } from '@/utils/PlayUtils';
+import submitAnswer from '@/mutations/submitAnswer';
 
 interface QuestionsBlockProps {
   quizData: any;
   session_id: any;
+}
+
+async function submitAnswerMutation(session_id: string) {
+  const response = submitAnswer(session_id);
+  console.log('submitAnswerMutation', response);
+  return response;
 }
 
 export default function QuestionBlock({ quizData, session_id }: QuestionsBlockProps) {
@@ -19,6 +26,7 @@ export default function QuestionBlock({ quizData, session_id }: QuestionsBlockPr
     const nextQIndex = getNextQuestionIndex(currentQIndex, qData);
     setcurrentQIndex(nextQIndex);
     setAnswersClicked([false, false, false, false]);
+    submitAnswerMutation(session_id);
   }
 
   function handleAnswerClick(optionIndex: number) {
