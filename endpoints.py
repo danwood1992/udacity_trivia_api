@@ -19,6 +19,15 @@ def play_quiz(quiz_id):
             'quiz': quiz.format()
         })
 
+@app.route('/quizzes/<uuid:quiz_id>/start', methods=['POST'])
+def start_quiz_session(quiz_id):
+    print("start quiz session endpoint")
+    data = request.get_json()
+    print(data)
+    return jsonify({
+        'message': 'hello from start quiz session'
+    })
+
 @app.route('/quizzes', methods=['GET'])
 def get_quizzes():
     quizzes = Quiz.query.all()
