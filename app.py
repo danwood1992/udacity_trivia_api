@@ -2,8 +2,6 @@ from base import app
 from middlewares import setup_middlewares
 import endpoints.quiz, endpoints.session, endpoints.tools
 
-
-
 setup_middlewares(app)
 
 if __name__ == '__main__': 
