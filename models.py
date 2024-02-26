@@ -53,10 +53,10 @@ class Question(BaseModel):
             'question': self.question,
             'category': self.category.type,
             'options': [
-                {'text': self.answer, 'is_clicked': False},
-                {'text': self.wrong_answer1, 'is_clicked': False},
-                {'text': self.wrong_answer2, 'is_clicked': False},
-                {'text': self.wrong_answer3, 'is_clicked': False}
+                {'text': self.answer},
+                {'text': self.wrong_answer1},
+                {'text': self.wrong_answer2},
+                {'text': self.wrong_answer3}
             ],
           
             
