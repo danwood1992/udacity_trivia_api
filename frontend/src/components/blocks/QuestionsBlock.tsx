@@ -10,7 +10,7 @@ interface QuestionsBlockProps {
   session_id: any;
 }
 
-async function submitAnswerMutation(session_id: string,question_id: string, answer_clicked: string) {
+async function submitAnswerMutation(session_id: string,question_id: string, score: number) {
   const response = submitAnswer(session_id);
   console.log('submitAnswerMutation', response);
   return response;
@@ -23,12 +23,11 @@ export default function QuestionBlock({ quizData, session_id }: QuestionsBlockPr
   const [score, setScore] = useState(0);
   const currentQ = qData[currentQIndex];
 
-
   function handleAnswerSubmit() {
     const nextQIndex = getNextQuestionIndex(currentQIndex, qData);
     setcurrentQIndex(nextQIndex);
     setAnswersClicked([false, false, false, false]);
-    submitAnswerMutation(session_id, currentQ.id, 'answer_clicked');
+    submitAnswerMutation(session_id, currentQ.id, score);
   }
 
   function handleAnswerClick(optionIndex: number,score: number) {
