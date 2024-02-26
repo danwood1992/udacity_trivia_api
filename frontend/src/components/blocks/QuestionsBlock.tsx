@@ -3,7 +3,6 @@ import { Container } from '@/components/layout/Structures';
 import Answer from '@/components/elements/Answer';
 import { BlockHeading } from '../elements/Headings';
 import { getNextQuestionIndex } from '@/utils/PlayUtils';
-import { UUID } from 'crypto';
 
 interface QuestionsBlockProps {
   quizData: any;

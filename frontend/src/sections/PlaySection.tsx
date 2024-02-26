@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {  Section } from '@/components/layout/Structures';
+import {  Section, Container } from '@/components/layout/Structures';
 import { SectionHeading } from '@/components/elements/Headings';
 import QuestionsBlock from '@/components/blocks/QuestionsBlock';
 import startQuizSession from '@/mutations/getAllQuizData';
@@ -29,12 +29,20 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
 
   return (
     <Section id={section_id}>
-      <SectionHeading className="flex justify-center capitalize text-lg underline" text={quizData.quiz.name} />
+      <SectionHeading className="flex justify-center capitalize text-lg underline" text={quizData.quiz.name}/>
+   
       <QuestionsBlock
         quizData={quizData}
         session_id={session_id}
       />
+
+      <Container className='text-sm'>
+        Session ID: {session_id}
+      </Container>
     </Section>
+   
+
+   
   );
 }
 
