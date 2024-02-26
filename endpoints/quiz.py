@@ -1,7 +1,6 @@
-from flask import jsonify, request
-from utils import seed_database
+from flask import jsonify
 from models import Question, Quiz, QuizSession
-from base import app, db
+from base import app
 from datetime import datetime
 
 @app.route('/quiz/<uuid:quiz_id>/play', methods=['GET'])
@@ -32,20 +31,12 @@ def start_quiz_session(quiz_id):
         'session_id': new_session.id,
         'quiz_id': quiz_id
     })
-
-@app.route('/quiz/<uuid:session_id>/submitanswer', methods=['POST'])
-def submit_answer(quiz_id):
-    print("submit quiz session endpoint")
-    data = request.get_json()
-    print(data)
-    return jsonify({
-        'message': 'hello from submit quiz session'
-    })
+    
 
 @app.route('/quizzes', methods=['GET'])
 def get_quizzes():
     quizzes = Quiz.query.all()
-    print("quizes endpoint")
+    print("quizzes endpoint")
     
     return jsonify({
         'message': 'hello from quizzes update new cache',
@@ -54,45 +45,3 @@ def get_quizzes():
         'success': True,
         'quizzes': [quiz.format() for quiz in quizzes]
     })
-
-@app.route('/test', methods=['GET'])
-def test():
-    return jsonify({
-        'message': 'hello from test'
-    })
-    
-
-@app.route('/seed', methods=['GET'])
-def seed():
-    if Question.query.count() > 0:
-        return jsonify({
-            'success': False,
-            'message': 'Database already seeded'
-        })
-    else:
-        seed_database()
-        
-        return jsonify({
-            'success': True,
-            'message': 'Database seeded'
-        })
-        
-@app.route('/reset', methods=['GET'])
-def reset():
-    db.drop_all()
-    db.create_all()
-    return jsonify({
-        'success': True,
-        'message': 'Database reset'
-    })
-        
-
-
-
-
-
-        
-
-    
-
-

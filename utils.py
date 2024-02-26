@@ -15,7 +15,6 @@ def create_quizzes():
     quizzes = ['fun quiz', 'hard quiz', 'easy quiz', 'random quiz', 'science quiz', 'history quiz', 'sports quiz', 'music quiz', 'art quiz', 'geography quiz']
     questions = Question.query.all()
     for quiz in quizzes:
-        print("creating quiz")
         new_quiz = Quiz(name=quiz, time_limit=random.randint(10, 60))
         new_quiz.add()
         for question in questions:
