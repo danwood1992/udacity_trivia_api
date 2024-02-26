@@ -19,13 +19,22 @@ def play_quiz(quiz_id):
             'quiz': quiz.format()
         })
 
-@app.route('/quizzes/<uuid:quiz_id>/start', methods=['POST'])
+@app.route('/quiz/<uuid:quiz_id>/start', methods=['POST'])
 def start_quiz_session(quiz_id):
     print("start quiz session endpoint")
     data = request.get_json()
     print(data)
     return jsonify({
         'message': 'hello from start quiz session'
+    })
+
+@app.route('/quiz/<uuid:session_id>/submitanswer', methods=['POST'])
+def submit_answer(quiz_id):
+    print("submit quiz session endpoint")
+    data = request.get_json()
+    print(data)
+    return jsonify({
+        'message': 'hello from submit quiz session'
     })
 
 @app.route('/quizzes', methods=['GET'])

@@ -62,9 +62,7 @@ class Question(BaseModel):
             
               
         }
-
-
-    
+ 
 class Quiz(BaseModel):
     __tablename__ = 'quizzes'
     
@@ -104,6 +102,28 @@ class QuizQuestion(BaseModel):
     quiz_id = db.Column(UUID(as_uuid=True), db.ForeignKey('quizzes.id'), primary_key=True)
     question = db.relationship('Question', backref='quizzes')
     question_id = db.Column(UUID(as_uuid=True), db.ForeignKey('questions.id'), primary_key=True)
+    
+
+class QuizSession(BaseModel):
+    __tablename__ = 'quiz_sessions'
+    
+    quiz = db.relationship('Quiz', backref='sessions')
+    quiz_id = db.Column(UUID(as_uuid=True), db.ForeignKey('quizzes.id'), nullable=False)
+    score = db.Column(db.Integer, nullable=False)
+    date = db.Column(db.DateTime, nullable=False)
+    
+    def format(self):
+        return {
+            'id': self.id,
+            'quiz': self.quiz.name,
+            'score': self.score,
+            'date': self.date
+        }
+    
+    def update_score(self):
+        self.score = self.score + 1
+        self.update()
+        return True
     
     
     
