@@ -1,7 +1,8 @@
 from flask import jsonify, request
 from utils import seed_database
-from models import Question, Quiz
+from models import Question, Quiz, QuizSession
 from base import app, db
+import datetime
 
 @app.route('/quiz/<uuid:quiz_id>/play', methods=['GET'])
 def play_quiz(quiz_id):
@@ -24,8 +25,13 @@ def start_quiz_session(quiz_id):
     print("start quiz session endpoint")
     data = request.get_json()
     print(data)
+    new_session = QuizSession(quiz_id=quiz_id, score=0, date=datetime.now())
+    new_session.add()
+    
     return jsonify({
-        'message': 'hello from start quiz session'
+        'message': 'hello from start quiz session',
+        'session_id': new_session.id,
+        'quiz_id': quiz_id
     })
 
 @app.route('/quiz/<uuid:session_id>/submitanswer', methods=['POST'])
