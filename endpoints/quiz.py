@@ -19,18 +19,7 @@ def play_quiz(quiz_id):
             'quiz': quiz.format()
         })
 
-@app.route('/quiz/<uuid:quiz_id>/start', methods=['GET'])
-def start_quiz_session(quiz_id):
-    print("start quiz session endpoint")
 
-    new_session = QuizSession(quiz_id=quiz_id, score=0, date=datetime.now())
-    new_session.add()
-    
-    return jsonify({
-        'message': 'hello from start quiz session',
-        'session_id': new_session.id,
-        'quiz_id': quiz_id
-    })
     
 
 @app.route('/quizzes', methods=['GET'])

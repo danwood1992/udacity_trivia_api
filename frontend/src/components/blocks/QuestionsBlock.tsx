@@ -3,36 +3,26 @@ import { Container } from '@/components/layout/Structures';
 import Answer from '@/components/elements/Answer';
 import { BlockHeading } from '../elements/Headings';
 import { getNextQuestionIndex } from '@/utils/PlayUtils';
-
-interface Option {
-  text: string;
-  is_clicked: boolean;
-}
-
-interface Question {
-  question: string;
-  options: Option[];
-}
+import { UUID } from 'crypto';
 
 interface QuestionsBlockProps {
-  currentQ: Question;
+  quizData: any;
+  session_id: any;
 }
 
-export default function QuestionBlock({ quizData }: QuestionsBlockProps) {
+export default function QuestionBlock({ quizData, session_id }: QuestionsBlockProps) {
+  const qData = quizData.quiz.questions;
   const [answersClicked, setAnswersClicked] = useState([false, false, false, false]);
-  const questionData = quizData.quiz.questions;
-  
   const [currentQIndex, setcurrentQIndex] = useState(0);
-  const currentQ = questionData[currentQIndex];
+  const currentQ = qData[currentQIndex];
 
   function handleAnswerSubmit() {
-    const nextQIndex = getNextQuestionIndex(currentQIndex, questionData);
+    const nextQIndex = getNextQuestionIndex(currentQIndex, qData);
     setcurrentQIndex(nextQIndex);
     setAnswersClicked([false, false, false, false]);
   }
 
   function handleAnswerClick(optionIndex: number) {
-
     const updatedAnswers = answersClicked.map((item, index) => 
       index === optionIndex ? !item : item
 
