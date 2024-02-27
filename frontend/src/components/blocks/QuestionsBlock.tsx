@@ -30,16 +30,13 @@ export default function QuestionBlock({ quizData, session_id }: QuestionsBlockPr
     submitAnswerMutation(session_id, currentQ.id, score);
   }
 
-  function handleAnswerClick(optionIndex: number,score: number) {
-    const updatedAnswers = answersClicked.map((item, index) => 
-      index === optionIndex ? !item : item
-
-    );
-    setScore(0);
+  function handleAnswerClick(optionIndex: number, score: number) {
+    const updatedAnswers = answersClicked.map((_, index) => index === optionIndex);
     setAnswersClicked(updatedAnswers);
     setScore(score);
   }
-
+  
+  
   return (
     <>
       <Container className='justify-center p-12 '>
