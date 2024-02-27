@@ -2,9 +2,10 @@ import React, { useEffect, useRef } from 'react';
 
 interface TimerProps {
   duration: number; // Define props with types
+  setQuizEnded: (value: boolean) => void;
 }
 
-const Timer: React.FC<TimerProps> = ({ duration }) => {
+const Timer: React.FC<TimerProps> = ({ duration, setQuizEnded }) => {
   const timerRef = useRef<HTMLDivElement>(null); // Specify the type for the ref
   const intervalRef = useRef<NodeJS.Timeout | null>(null); // Correct type for setInterval in NodeJS
 
@@ -22,6 +23,7 @@ const Timer: React.FC<TimerProps> = ({ duration }) => {
 
       if (remainingTime <= 0 && intervalRef.current) {
         clearInterval(intervalRef.current);
+        setQuizEnded(true); // Call the function to end the quiz
       }
     }, 1000);
 

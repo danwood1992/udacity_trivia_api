@@ -57,7 +57,8 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
   if (quizStarted) {  
     return (
       <Section id={section_id}>
-        <ProgressBar duration={25} />
+        <ProgressBar duration={9} />
+        <Timer duration={9} setQuizEnded={setQuizEnded}/>
         <QuestionsBlock
           quizData={quizData}
           session_id={session_id}
