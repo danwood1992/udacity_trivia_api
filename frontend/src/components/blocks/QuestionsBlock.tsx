@@ -20,22 +20,21 @@ export default function QuestionBlock({ quizData, session_id }: QuestionsBlockPr
   const qData = quizData.quiz.questions;
   const [answersClicked, setAnswersClicked] = useState([false, false, false, false]);
   const [currentQIndex, setcurrentQIndex] = useState(0);
-  const [score, setScore] = useState(0);
+  const [answerScore, setAnswerScore] = useState(0);
   const currentQ = qData[currentQIndex];
 
   function handleAnswerSubmit() {
     const nextQIndex = getNextQuestionIndex(currentQIndex, qData);
     setcurrentQIndex(nextQIndex);
     setAnswersClicked([false, false, false, false]);
-    submitAnswerMutation(session_id, currentQ.id, score);
+    submitAnswerMutation(session_id, currentQ.id, answerScore);
   }
 
   function handleAnswerClick(optionIndex: number, score: number) {
     const updatedAnswers = answersClicked.map((_, index) => index === optionIndex);
     setAnswersClicked(updatedAnswers);
-    setScore(score);
+    setAnswerScore(score);
   }
-  
   
   return (
     <>
