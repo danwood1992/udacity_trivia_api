@@ -14,7 +14,7 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
   const [quizStarted, setQuizStarted] = useState(false);
   const [quizEnded, setQuizEnded] = useState(false);
   const [playerName, setPlayerName] = useState(''); 
-  const totalTime = 500; 
+  const totalTime = 600; 
   const [timeLeft, setTimeLeft] = useState(totalTime);
   const [timerRunning, setTimerRunning] = useState(true);
 
@@ -35,6 +35,16 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
     setQuizStarted(true);
   }
 
+  if (quizEnded) {
+    return (
+      <Section id={section_id}>
+        <Container className="flex flex-col justify-center items-center min-h-screen ">
+          <h1>Quiz Ended</h1>
+          <h2>Your Score: {quizScore}</h2>
+        </Container>
+      </Section>
+    );
+  }
 
   return (
     <Section id={section_id}>
@@ -65,11 +75,6 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
           quizScore={quizScore}
           />
           </div>
-      )}
-      {quizEnded && (
-        <Container className='text-2xl'>
-          Quiz Ended
-        </Container>
       )}
       <Container className='text-sm'>
         Session ID: {playerName} {session_id}
