@@ -39,3 +39,17 @@ def submit_answer(session_id):
         
     })
     
+    
+@app.route('/sessions', methods=['GET'])
+def get_sessions():
+    sessions = QuizSession.query.all()
+    
+    return jsonify({
+        'message': 'hello from get sessions',
+        'no_sessions': len(sessions),
+        'success': True,
+        'sessions': [session.format() for session in sessions]
+    })
+    
+
+    
