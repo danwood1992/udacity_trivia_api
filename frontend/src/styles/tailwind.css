@@ -12,6 +12,23 @@
 
 
 /* Custom CSS */
+@keyframes decreaseWidth {
+    from {
+      width: 100%;
+    }
+    to {
+      width: 0%;
+    }
+  }
+  
+  .animate-progress {
+    animation-name: decreaseWidth;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards; /* Keeps the progress bar at final state when the animation completes */
+  }
+  
+
+
 .hero-animation{
     animation: slide 2s forwards; 
   }

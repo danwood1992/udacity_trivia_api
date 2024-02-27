@@ -53,6 +53,7 @@ export default function QuestionBlock({ quizData, session_id, updateQuizScore,qu
     <>
       <Container className='justify-center p-12 '>
         <BlockHeading className="capitalize text-4xl text-dark-blue font-bold p-8" text={currentQ.question}></BlockHeading>
+
       </Container>
 
       <Container className='grid grid-cols-1 md:grid-cols-2 gap-2 p-12 border border-dark-blue rounded-2xl shadow-xl m-8'>
