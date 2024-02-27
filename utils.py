@@ -22,7 +22,7 @@ def create_quizzes():
 
 def create_questions():
     category_ids = [category.id for category in Category.query.all()]
-    for i in range(50):
+    for i in range(10):
         question = Question(
             question=fake.sentence(),
             answer=fake.word(),

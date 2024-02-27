@@ -10,6 +10,7 @@ interface QuestionsBlockProps {
   session_id: any;
   updateQuizScore: any;
   quizScore: number;
+  setQuizEnded: any
 }
 
 async function submitAnswerMutation(session_id: string,question_id: string, score: number) {
@@ -17,12 +18,15 @@ async function submitAnswerMutation(session_id: string,question_id: string, scor
   return response;
 }
 
-export default function QuestionBlock({ quizData, session_id, updateQuizScore,quizScore }: QuestionsBlockProps) {
+export default function QuestionBlock({ quizData, session_id, updateQuizScore,quizScore,setQuizEnded }: QuestionsBlockProps) {
   const qData = quizData.quiz.questions;
   const [answersClicked, setAnswersClicked] = useState([false, false, false, false]);
   const [currentQIndex, setcurrentQIndex] = useState(0);
   const [answerScore, setAnswerScore] = useState(0);
   const currentQ = qData[currentQIndex];
+  const [quizLength, setQuizLength] = useState(qData.length);
+  console.log('Quiz Length:', quizLength);
+  console.log('Current Question Index:', currentQIndex);
 
 
   function handleAnswerSubmit() {
@@ -32,6 +36,10 @@ export default function QuestionBlock({ quizData, session_id, updateQuizScore,qu
     submitAnswerMutation(session_id, currentQ.id, answerScore);
     updateQuizScore(answerScore + quizScore);
     setAnswerScore(0);
+  
+    if (currentQIndex === quizLength - 1) {
+      setQuizEnded(true);
+    }
     
   }
 

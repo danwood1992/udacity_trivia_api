@@ -14,20 +14,6 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
   const [quizStarted, setQuizStarted] = useState(false);
   const [quizEnded, setQuizEnded] = useState(false);
   const [playerName, setPlayerName] = useState(''); 
-  const totalTime = 600; 
-  const [timeLeft, setTimeLeft] = useState(totalTime);
-  const [timerRunning, setTimerRunning] = useState(true);
-
-  useEffect(() => {
-    if (!timerRunning) return;
-    if (timeLeft === 0) {
-      setQuizEnded(true);
-    }
-    const interval = setInterval(() => {
-      setTimeLeft(timeLeft - 1);
-    }, 10);
-    return () => clearInterval(interval);
-  }, [timeLeft, timerRunning]);
 
   async function handleStartQuiz() {
     const response = await startQuizSession(quizData.quiz.id);
@@ -46,44 +32,45 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
     );
   }
 
-  return (
-    <Section id={section_id}>
-      {!quizStarted && (
-          <Container className="flex flex-col justify-center items-center min-h-screen ">
-            <div>Enter Name:
-              <input
-                type="text"
-                value={playerName}
-                onChange={(e) => setPlayerName(e.target.value)}
-              />
-            </div>
-            <Container onClick={handleStartQuiz} className="mt-4 p-2 bg-dark-blue text-white rounded rounded-lg cursor-pointer text-center text-2xl transform -translate-y-1/4">
-              Start
-            </Container>
+  if (!quizStarted) {
+    return (
+      <Section id={section_id}>
+        <Container className="flex flex-col justify-center items-center min-h-screen ">
+          <div>Enter Name:
+            <input
+              type="text"
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+            />
+          </div>
+          <Container onClick={handleStartQuiz} className="mt-4 p-2 bg-dark-blue text-white rounded rounded-lg cursor-pointer text-center text-2xl transform -translate-y-1/4">
+            Start
           </Container>
-        )}
-      {quizStarted && (
-        <div>
-          <div className="bg-dark-blue text-xs font-medium text-dark-blue text-center p-0.5 leading-none rounded-l-full" 
-                style={{ width: `${(timeLeft / totalTime) * 100}%` }}>
-                  |
-        </div>
+        </Container>
+      </Section>
+    );
+  }
+
+  if (quizStarted) {  
+    return (
+      <Section id={section_id}>
         <QuestionsBlock
           quizData={quizData}
           session_id={session_id}
           updateQuizScore={setQuizScore}
           quizScore={quizScore}
-          />
-          </div>
-      )}
-      <Container className='text-sm'>
+          setQuizEnded={setQuizEnded}
+        />
+        <Container className='text-sm'>
+        Quiz Score: {quizScore}
+        </Container>
+        <Container className='text-sm'>
         Session ID: {playerName} {session_id}
       </Container>
-      <Container className='text-sm'>
-        Quiz Score: {quizScore}
-      </Container>
-    </Section>
-  );
+      </Section>
+      
+    );
+  }
 }
 
 
