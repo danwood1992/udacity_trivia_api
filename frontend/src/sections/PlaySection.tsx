@@ -39,11 +39,13 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
     return (
       <Section id={section_id}>
         <Container className="flex flex-col justify-center items-center min-h-screen ">
-          <div>Enter Name:
+          <div>
             <input
               type="text"
               value={playerName}
               onChange={(e) => setPlayerName(e.target.value)}
+              className="p-2 border border-dark-blue rounded-lg w-48 text-center text-2xl transform -translate-y-1/4 m-4"
+              placeholder="Enter Name"
             />
           </div>
           <Container onClick={handleStartQuiz} className="mt-4 p-2 bg-dark-blue text-white rounded rounded-lg cursor-pointer text-center text-2xl transform -translate-y-1/4">
