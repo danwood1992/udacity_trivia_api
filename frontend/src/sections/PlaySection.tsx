@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Section, Container } from '@/components/layout/Structures';
-import { SectionHeading } from '@/components/elements/Headings';
 import QuestionsBlock from '@/components/blocks/QuestionsBlock';
 import startQuizSession from '@/mutations/startQuizSession';
 
@@ -13,13 +12,29 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
   const [session_id, setSessionId] = useState('');
   const [quizScore, setQuizScore] = useState(0);
   const [quizStarted, setQuizStarted] = useState(false);
-  const [playerName, setPlayerName] = useState(''); // [1]
+  const [quizEnded, setQuizEnded] = useState(false);
+  const [playerName, setPlayerName] = useState(''); 
+  const totalTime = 500; 
+  const [timeLeft, setTimeLeft] = useState(totalTime);
+  const [timerRunning, setTimerRunning] = useState(true);
+
+  useEffect(() => {
+    if (!timerRunning) return;
+    if (timeLeft === 0) {
+      setQuizEnded(true);
+    }
+    const interval = setInterval(() => {
+      setTimeLeft(timeLeft - 1);
+    }, 10);
+    return () => clearInterval(interval);
+  }, [timeLeft, timerRunning]);
 
   async function handleStartQuiz() {
     const response = await startQuizSession(quizData.quiz.id);
     setSessionId(response.session_id);
     setQuizStarted(true);
   }
+
 
   return (
     <Section id={section_id}>
@@ -38,12 +53,23 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
           </Container>
         )}
       {quizStarted && (
+        <div>
+          <div className="bg-dark-blue text-xs font-medium text-dark-blue text-center p-0.5 leading-none rounded-l-full" 
+                style={{ width: `${(timeLeft / totalTime) * 100}%` }}>
+                  |
+        </div>
         <QuestionsBlock
           quizData={quizData}
           session_id={session_id}
           updateQuizScore={setQuizScore}
           quizScore={quizScore}
-        />
+          />
+          </div>
+      )}
+      {quizEnded && (
+        <Container className='text-2xl'>
+          Quiz Ended
+        </Container>
       )}
       <Container className='text-sm'>
         Session ID: {playerName} {session_id}

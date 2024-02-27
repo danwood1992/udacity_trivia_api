@@ -23,26 +23,6 @@ export default function QuestionBlock({ quizData, session_id, updateQuizScore,qu
   const [currentQIndex, setcurrentQIndex] = useState(0);
   const [answerScore, setAnswerScore] = useState(0);
   const currentQ = qData[currentQIndex];
-  const totalTime = 500; 
-  const [timeLeft, setTimeLeft] = useState(totalTime);
-  const [timerRunning, setTimerRunning] = useState(true);
-
-  useEffect(() => {
-    if (!timerRunning) return;
-    if (timeLeft === 0) {
-      const nextQIndex = getNextQuestionIndex(currentQIndex, qData);
-      setcurrentQIndex(nextQIndex);
-      setAnswersClicked([false, false, false, false]);
-      submitAnswerMutation(session_id, currentQ.id, answerScore);
-      updateQuizScore(answerScore + quizScore);
-      setAnswerScore(0);
-      setTimeLeft(totalTime);
-    }
-    const interval = setInterval(() => {
-      setTimeLeft(timeLeft - 1);
-    }, 10);
-    return () => clearInterval(interval);
-  }, [timeLeft, timerRunning]);
 
 
   function handleAnswerSubmit() {
@@ -52,7 +32,7 @@ export default function QuestionBlock({ quizData, session_id, updateQuizScore,qu
     submitAnswerMutation(session_id, currentQ.id, answerScore);
     updateQuizScore(answerScore + quizScore);
     setAnswerScore(0);
-    setTimeLeft(0);
+    
   }
 
   function handleAnswerClick(optionIndex: number, score: number) {
@@ -66,11 +46,6 @@ export default function QuestionBlock({ quizData, session_id, updateQuizScore,qu
       <Container className='justify-center p-12 '>
         <BlockHeading className="capitalize text-4xl text-dark-blue font-bold p-8" text={currentQ.question}></BlockHeading>
       </Container>
-      
-      <div className="bg-dark-blue text-xs font-medium text-dark-blue text-center p-0.5 leading-none rounded-l-full" 
-        style={{ width: `${(timeLeft / totalTime) * 100}%` }}>
-          |
-      </div>
 
       <Container className='grid grid-cols-1 md:grid-cols-2 gap-2 p-12 border border-dark-blue rounded-2xl shadow-xl m-8'>
         <Answer answer={currentQ.options[0].text} clicked={answersClicked[0]} onClick={() => handleAnswerClick(0,currentQ.options[0].score)}/>
