@@ -17,6 +17,7 @@ async function startQuiz(quizId: string) {
 
 export default function PlaySection({ quizData, section_id }: NewPlaySectionProps) {
   const [session_id, setSessionId] = useState('');
+  const [quizScore, setQuizScore] = useState(0);
 
    useEffect(() => {
     (async () => {
@@ -33,9 +34,14 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
       <QuestionsBlock
         quizData={quizData}
         session_id={session_id}
+        updateQuizScore={setQuizScore}
+        quizScore={quizScore}
       />
       <Container className='text-sm'>
         Session ID: {session_id}
+      </Container>
+      <Container className='text-sm'>
+        quizScore ID: {quizScore}
       </Container>
     </Section>
   );

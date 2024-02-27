@@ -57,10 +57,7 @@ class Question(BaseModel):
                 {'text': self.wrong_answer1, 'score': 0},
                 {'text': self.wrong_answer2, 'score': 0},
                 {'text': self.wrong_answer3, 'score': 0}
-            ],
-          
-            
-              
+            ],  
         }
  
 class Quiz(BaseModel):
@@ -70,7 +67,6 @@ class Quiz(BaseModel):
     time_limit = db.Column(db.Integer, nullable=False)
     
     def formatted_questions(self):
-       
         return [quiz_question.question.format() for quiz_question in self.questions]
     
     
