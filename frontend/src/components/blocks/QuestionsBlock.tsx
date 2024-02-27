@@ -13,8 +13,7 @@ interface QuestionsBlockProps {
 }
 
 async function submitAnswerMutation(session_id: string,question_id: string, score: number) {
-  const response = submitAnswer(session_id);
-  console.log('submitAnswerMutation', response);
+  const response = submitAnswer(session_id, question_id, score);
   return response;
 }
 

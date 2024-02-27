@@ -2,6 +2,7 @@ from flask import jsonify
 from models import  QuizSession
 from base import app
 from datetime import datetime
+from flask import request
 
 @app.route('/session/<uuid:quiz_id>/start', methods=['POST'])
 def start_quiz_session(quiz_id):
@@ -31,6 +32,13 @@ def submit_answer(session_id):
             'success': False,
             'message': 'Session not found'
         })
+    
+    data = request.get_json()
+    print("Score: ", data['score'])
+    
+    session.score += data['score']
+    print("New score: ", session.score)
+    session.update()
         
     return jsonify({
         'message': 'hello from submit answer session',
