@@ -22,12 +22,13 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
 
   return (
     <Section id={section_id}>
-      <SectionHeading className="flex justify-center capitalize text-lg underline" text={quizData.quiz.name}/>
       {!quizStarted && (
-        <button onClick={handleStartQuiz} className="my-4 p-2 bg-blue-500 text-white rounded">
-          Start Quiz
-        </button>
-      )}
+          <Container className="flex flex-col justify-center items-center min-h-screen ">
+            <Container onClick={handleStartQuiz} className="mt-4 p-2 bg-dark-blue text-white rounded rounded-lg cursor-pointer text-center text-2xl transform -translate-y-1/4">
+              Start
+            </Container>
+          </Container>
+        )}
       {quizStarted && (
         <QuestionsBlock
           quizData={quizData}
