@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Section, Container } from '@/components/layout/Structures';
 import QuestionsBlock from '@/components/blocks/QuestionsBlock';
 import startQuizSession from '@/mutations/startQuizSession';
+import ProgressBar from '@/components/elements/ProgressBar';
+import Timer from '@/components/elements/Timer';
+
 
 interface NewPlaySectionProps {
     section_id: string;
@@ -54,6 +57,7 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
   if (quizStarted) {  
     return (
       <Section id={section_id}>
+        <ProgressBar duration={25} />
         <QuestionsBlock
           quizData={quizData}
           session_id={session_id}
