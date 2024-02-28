@@ -25,6 +25,14 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
     setQuizStarted(true);
   }
 
+  async function restartQuiz() {
+    const response = await startQuizSession(quizData.quiz.id);
+    setSessionId(response.session_id);
+    setQuizStarted(true);
+    setQuizEnded(false);
+    setQuizScore(0);
+  }
+
   if (quizEnded) {
     submitQuiz(session_id, quizData.quiz.id, quizScore);
 
@@ -33,6 +41,7 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
         <Container className="flex flex-col justify-center items-center min-h-screen ">
           <h1>Quiz Ended</h1>
           <h2>Your Score: {quizScore}</h2>
+          <button onClick={restartQuiz}>Play again</button>
 
         </Container>
       </Section>
@@ -63,8 +72,8 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
   if (quizStarted) {  
     return (
       <Section id={section_id}>
-        <ProgressBar duration={9} />
-        <Timer duration={9} setQuizEnded={setQuizEnded}/>
+        <ProgressBar duration={25} />
+        <Timer duration={25} setQuizEnded={setQuizEnded}/>
         <QuestionsBlock
           quizData={quizData}
           updateQuizScore={setQuizScore}
