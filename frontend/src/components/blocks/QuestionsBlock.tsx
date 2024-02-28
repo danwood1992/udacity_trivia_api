@@ -6,14 +6,13 @@ import { getNextQuestionIndex } from '@/utils/PlayUtils';
 
 interface QuestionsBlockProps {
   quizData: any;
-  session_id: any;
   updateQuizScore: any;
   quizScore: number;
   setQuizEnded: any
 }
 
 
-export default function QuestionBlock({ quizData, session_id, updateQuizScore,quizScore,setQuizEnded }: QuestionsBlockProps) {
+export default function QuestionBlock({ quizData, updateQuizScore,quizScore,setQuizEnded }: QuestionsBlockProps) {
   const qData = quizData.quiz.questions;
   const [answersClicked, setAnswersClicked] = useState([false, false, false, false]);
   const [currentQIndex, setcurrentQIndex] = useState(0);

@@ -67,7 +67,6 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
         <Timer duration={9} setQuizEnded={setQuizEnded}/>
         <QuestionsBlock
           quizData={quizData}
-          session_id={session_id}
           updateQuizScore={setQuizScore}
           quizScore={quizScore}
           setQuizEnded={setQuizEnded}
