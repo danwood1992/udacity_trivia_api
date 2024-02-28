@@ -13,11 +13,11 @@ export default function QuizLinkSection({quizData, section_id}:QuizLinkSectionPr
   console.log('QuizLinkSection: quizData:', quizData)
 
   return (
-      <Section id={section_id} className='border rounded-xl' >
-        <SectionHeading text='Play a Quiz' className='text-4xl p-6 text-center' />
-        <Container className='grid grid-cols-1 md:grid-cols-2 justify-items-center border rounded p-4  shadow-xl mt-4'>
-          <QuizMetaBlock quizData={quizData} />
+      <Section id={section_id} className='border rounded-3xl border-dark-blue -my-10 z-10 bg-white'>
+        <Container className='flex grid-cols-3 md:grid-cols-3 justify-items-center p-4 shadow-xl mt-4'>
+         <div></div>
           <QuizLinkBlock quizData={quizData} />
+          <div></div>
         </Container>
       </Section>
     )         

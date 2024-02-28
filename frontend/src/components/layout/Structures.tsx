@@ -38,7 +38,7 @@ export function Section({
     }: React.ComponentPropsWithoutRef<'div'>) {
     return (
         <section
-        className={clsx('section', className)}
+        className={clsx('', className)}
         {...props}
         />
     )
@@ -50,7 +50,7 @@ export function PageWrapper({
     }: React.ComponentPropsWithoutRef<'div'>) {
     return (
         <div
-        className={clsx('page', className)}
+        className={clsx('', className)}
         {...props}
         />
     )

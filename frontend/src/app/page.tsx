@@ -5,6 +5,7 @@ import getQuizData from "@/queries/getAllQuizData";
 
 export default async function Page() {
   const quizData = await getQuizData();
+
   return (
     <PageWrapper>
       <IndexHeadingSection section_id="index-heading-section" quizData={quizData} />

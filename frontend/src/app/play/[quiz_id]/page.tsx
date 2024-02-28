@@ -1,4 +1,5 @@
 'use client'
+import {Header} from "@/components/layout/Header";
 import PlaySection from "@/sections/PlaySection";
 import getQuizData from "@/queries/getQuizData";
 import { useParams } from "next/navigation";
@@ -27,6 +28,7 @@ export default function Page() {
 
   return (
     <>
+     <Header />
       <PlaySection section_id="play-section-1" quizData={quizData} />
     </>
   );
