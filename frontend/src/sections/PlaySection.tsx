@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Section, Container } from '@/components/layout/Structures';
+import submitQuiz from '@/mutations/submitQuiz';
 import QuestionsBlock from '@/components/blocks/QuestionsBlock';
 import startQuizSession from '@/mutations/startQuizSession';
 import ProgressBar from '@/components/elements/ProgressBar';
@@ -25,11 +26,14 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
   }
 
   if (quizEnded) {
+    submitQuiz(session_id, quizData.quiz.id, quizScore);
+
     return (
       <Section id={section_id}>
         <Container className="flex flex-col justify-center items-center min-h-screen ">
           <h1>Quiz Ended</h1>
           <h2>Your Score: {quizScore}</h2>
+
         </Container>
       </Section>
     );

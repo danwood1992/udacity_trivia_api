@@ -8,7 +8,6 @@ interface WelcomeBlockProps {
 }
 
 export default function WelcomeBlock({quizData}:WelcomeBlockProps) {
-  console.log('WelcomeBlock: quizData:', quizData)
   return(
     <>
     <Container className='grid grid-cols-1 justify-items-center p-4 bg-dark-blue text-white '>

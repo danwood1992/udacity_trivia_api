@@ -23,9 +23,9 @@ def start_quiz_session(quiz_id):
         'quiz_id': quiz_id
     })
 
-@app.route('/session/<uuid:session_id>/submitanswer', methods=['POST'])
-def submit_answer(session_id):
-    print(f"submit submitanswer endpoint {session_id}")
+@app.route('/session/<uuid:session_id>/submitquiz', methods=['POST'])
+def submit_quiz(session_id):
+    print(f"submitQuiz {session_id}")
     session = QuizSession.query.get(session_id)
     if session is None:
         return jsonify({
@@ -34,17 +34,17 @@ def submit_answer(session_id):
         })
     
     data = request.get_json()
-    print("Score: ", data['score'])
+    
     
     session.score += data['score']
-    print("New score: ", session.score)
     session.update()
+    print(f"session score: {session.score}")
         
     return jsonify({
         'message': 'hello from submit answer session',
         'session_id': session_id,
-        'quiz_id': session.quiz_id
-        
+        'quiz_id': session.quiz_id,
+        'score': session.score
     })
     
     

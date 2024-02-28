@@ -3,7 +3,6 @@ import { Container } from '@/components/layout/Structures';
 import Answer from '@/components/elements/Answer';
 import { BlockHeading } from '../elements/Headings';
 import { getNextQuestionIndex } from '@/utils/PlayUtils';
-import submitAnswer from '@/mutations/submitAnswer';
 
 interface QuestionsBlockProps {
   quizData: any;
@@ -13,10 +12,6 @@ interface QuestionsBlockProps {
   setQuizEnded: any
 }
 
-async function submitAnswerMutation(session_id: string,question_id: string, score: number) {
-  const response = submitAnswer(session_id, question_id, score);
-  return response;
-}
 
 export default function QuestionBlock({ quizData, session_id, updateQuizScore,quizScore,setQuizEnded }: QuestionsBlockProps) {
   const qData = quizData.quiz.questions;
@@ -33,7 +28,6 @@ export default function QuestionBlock({ quizData, session_id, updateQuizScore,qu
     const nextQIndex = getNextQuestionIndex(currentQIndex, qData);
     setcurrentQIndex(nextQIndex);
     setAnswersClicked([false, false, false, false]);
-    submitAnswerMutation(session_id, currentQ.id, answerScore);
     updateQuizScore(answerScore + quizScore);
     setAnswerScore(0);
   
@@ -53,7 +47,6 @@ export default function QuestionBlock({ quizData, session_id, updateQuizScore,qu
     <>
       <Container className='justify-center p-12 '>
         <BlockHeading className="capitalize text-4xl text-dark-blue font-bold p-8" text={currentQ.question}></BlockHeading>
-
       </Container>
 
       <Container className='grid grid-cols-1 md:grid-cols-2 gap-2 p-12 border border-dark-blue rounded-2xl shadow-xl m-8'>

@@ -1,5 +1,5 @@
-export default async function submitAnswer(session_id: string, question_id: string, score: number) {
-    const response = await fetch(`http://localhost:5125/session/${session_id}/submitanswer`, {
+export default async function submitQuiz(session_id: string, question_id: string, score: number) {
+    const response = await fetch(`http://localhost:5125/session/${session_id}/submitquiz`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
