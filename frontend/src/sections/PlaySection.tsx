@@ -43,6 +43,18 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
           <h2>Your Score: {quizScore}</h2>
           <button onClick={restartQuiz}>Play again</button>
 
+          <Container className='text-md border grid grid-cols-1 justify-items-center p-4 m-4'>
+          <div className='p-4'>
+            Why did you hate thsi quiz!
+          </div>
+          <div className='grid grid-cols-1 m-4'>
+              <textarea className='border rounded-lg p-2' />
+              <button className='p-2 m-2 rounded bg-dark-blue text-white '>Submit</button>
+          </div>
+    
+            </Container>
+
+
         </Container>
       </Section>
     );
