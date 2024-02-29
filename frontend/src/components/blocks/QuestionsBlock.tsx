@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container } from '@/components/layout/Structures';
 import Answer from '@/components/elements/Answer';
 import { BlockHeading } from '../elements/Headings';
@@ -19,9 +19,6 @@ export default function QuestionBlock({ quizData, updateQuizScore,quizScore,setQ
   const [answerScore, setAnswerScore] = useState(0);
   const currentQ = qData[currentQIndex];
   const [quizLength, setQuizLength] = useState(qData.length);
-  console.log('Quiz Length:', quizLength);
-  console.log('Current Question Index:', currentQIndex);
-
 
   function handleAnswerSubmit() {
     const nextQIndex = getNextQuestionIndex(currentQIndex, qData);
@@ -47,7 +44,6 @@ export default function QuestionBlock({ quizData, updateQuizScore,quizScore,setQ
       <Container className='justify-center p-12 '>
         <BlockHeading className="capitalize text-4xl text-dark-blue font-bold p-8" text={currentQ.question}></BlockHeading>
       </Container>
-
       <Container className='grid grid-cols-1 md:grid-cols-2 gap-2 p-12 border border-dark-blue rounded-2xl shadow-xl m-8'>
         <Answer answer={currentQ.options[0].text} clicked={answersClicked[0]} onClick={() => handleAnswerClick(0,currentQ.options[0].score)}/>
         <Answer answer={currentQ.options[1].text} clicked={answersClicked[1]} onClick={() => handleAnswerClick(1,currentQ.options[1].score)}/>
@@ -56,8 +52,8 @@ export default function QuestionBlock({ quizData, updateQuizScore,quizScore,setQ
       </Container>
       <Container className='grid grid-cols-3 p-8 m-8 justify-items-center'>
         <h2 className='flex rounded-lg font-bold text-dark-blue p-4 text-xl'>Question: {currentQIndex + 1}</h2>
+        <button className='flex rounded-lg font-bold text-white bg-dark-blue p-4 text-2xl'  onClick={handleAnswerSubmit}>Submit Answer</button>
         <h2 className='flex rounded-lg font-bold text-dark-blue p-4 text-xl'>Score: {quizScore}</h2>
-        <button className='flex rounded-lg font-bold text-white bg-dark-blue p-4 text-xl'  onClick={handleAnswerSubmit}>Submit</button>
       </Container>
     </>
   );
