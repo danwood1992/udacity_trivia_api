@@ -38,7 +38,7 @@ export default function RootLayout({
         lexend.variable,
       )}
     >
-      <body className="flex h-full flex-col bg-white">
+      <body className="flex h-full flex-col bg-dark-blue">
           {children}
    
       </body>

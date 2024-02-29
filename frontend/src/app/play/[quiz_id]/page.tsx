@@ -1,7 +1,7 @@
 'use client'
-import {Header} from "@/components/layout/Header";
+import IndexHeadingSection from "@/sections/IndexHeadingSection";
+import PlayFooter from "@/components/layout/PlayFooter";
 import PlaySection from "@/sections/PlaySection";
-import FeedbackSection from "@/sections/FeedbackSection";
 import getQuizData from "@/queries/getQuizData";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from 'react';
@@ -29,9 +29,10 @@ export default function Page() {
 
   return (
     <>
-     <Header />
+      <IndexHeadingSection section_id="index-heading-section" quizData={quizData} />
       <PlaySection section_id="play-section-1" quizData={quizData} />
-      <FeedbackSection section_id="feedback-section-1" quizData={quizData} />
+      <PlayFooter section_id="index-heading-section" quizData={quizData} />
+   
 
     </>
   );

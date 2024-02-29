@@ -21,7 +21,7 @@ export default function FeedbackSection({quizData, section_id}:FeedbackSectionPr
   if (funnyjoke) {
     return (
       <Section id={section_id} >
-            <Container className='justify-center border rounded p-4 bg-dark-blue text-white shadow-xl mt-4'>
+            <Container className='justify-center border rounded-xl p-4 bg-dark-blue text-white shadow-xl mt-4'>
               <p className='text-center text-2xl m-4'>Why did ryan cross the road?</p>
               <p className='text-center text-2xl m-4'>To get to the other side!</p>
             </Container>
@@ -30,7 +30,7 @@ export default function FeedbackSection({quizData, section_id}:FeedbackSectionPr
   }
   return (
       <Section id={section_id} >
-            <Container className='justify-center border rounded p-4 bg-dark-blue shadow-xl mt-4'>
+            <Container className='justify-center border rounded-xl p-4 bg-dark-blue shadow-xl mt-4'>
               <textarea className='border border-dark-blue rounded-lg  text-center text-xl m-4' placeholder='Tell Us What You Think for a funny Joke!' />
               <button onClick={handleFeedback} className='bg-dark-blue  rounded-lg p-2 m-4'>Submit</button>
             </Container>

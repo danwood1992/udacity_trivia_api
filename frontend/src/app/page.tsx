@@ -1,4 +1,3 @@
-import { PageWrapper } from "@/components/layout/Structures";
 import QuizLinkSection from "@/sections/QuizLinkSection";
 import IndexFooter from "@/sections/IndexFooter";
 import IndexHeadingSection from "@/sections/IndexHeadingSection";

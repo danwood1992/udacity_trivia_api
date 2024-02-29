@@ -42,18 +42,18 @@ export default function QuestionBlock({ quizData, updateQuizScore,quizScore,setQ
   return (
     <>
       <Container className='justify-center p-12 '>
-        <BlockHeading className="capitalize text-4xl text-dark-blue font-bold p-8" text={currentQ.question}></BlockHeading>
+        <BlockHeading className="capitalize text-4xl text-dark-blue font-bold p-4" text={currentQ.question}></BlockHeading>
       </Container>
-      <Container className='grid grid-cols-1 md:grid-cols-2 gap-2 p-12 border border-dark-blue rounded-2xl shadow-xl m-8'>
+      <Container className='grid grid-cols-1 md:grid-cols-2 gap-2 p-12m-8 p-2'>
         <Answer answer={currentQ.options[0].text} clicked={answersClicked[0]} onClick={() => handleAnswerClick(0,currentQ.options[0].score)}/>
         <Answer answer={currentQ.options[1].text} clicked={answersClicked[1]} onClick={() => handleAnswerClick(1,currentQ.options[1].score)}/>
         <Answer answer={currentQ.options[2].text} clicked={answersClicked[2]} onClick={() => handleAnswerClick(2,currentQ.options[1].score)}/>
         <Answer answer={currentQ.options[3].text} clicked={answersClicked[3]} onClick={() => handleAnswerClick(3,currentQ.options[1].score)}/>
       </Container>
       <Container className='grid grid-cols-3 p-8 m-8 justify-items-center'>
-        <h2 className='flex rounded-lg font-bold text-dark-blue p-4 text-xl'>Question: {currentQIndex + 1}</h2>
-        <button className='flex rounded-lg font-bold text-white bg-dark-blue p-4 text-2xl'  onClick={handleAnswerSubmit}>Submit Answer</button>
-        <h2 className='flex rounded-lg font-bold text-dark-blue p-4 text-xl'>Score: {quizScore}</h2>
+        <h2 className='flex rounded-lg font-bold text-white p-4 text-xl'>Question: {currentQIndex + 1}</h2>
+        <button className='flex rounded-lg font-bold text-dark-blue bg-white p-4 text-2xl hover:bg-red-200'  onClick={handleAnswerSubmit}>Submit Answer</button>
+        <h2 className='flex rounded-lg font-bold text-white p-4 text-xl'>Score: {quizScore}</h2>
       </Container>
     </>
   );
