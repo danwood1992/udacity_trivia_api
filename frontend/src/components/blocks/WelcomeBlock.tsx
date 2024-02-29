@@ -10,18 +10,15 @@ interface WelcomeBlockProps {
 export default function WelcomeBlock({quizData}:WelcomeBlockProps) {
   return(
     <>
-    <Container className='grid grid-cols-1 justify-items-center p-4 bg-dark-blue text-white '>
-      <div></div>
-      <BlockHeading text='UdaciTrivia' className='text-7xl p-4' />
-      <div></div>
-   
-    </Container>
-     <Container className='grid grid-cols-1 justify-items-center bg-dark-blue text-white '>
-      <Link href="/" aria-label="Home" className='rotating p-4'>
-        <Image src="/images/science.svg" width={95} height={95} alt="rotating" />  
+    <Container className='grid grid-cols-1 justify-items-center bg-dark-blue text-white p-4 m-4 '>
+    
+      <BlockHeading text='UdaciTrivia' className='text-7xl' />
+      <Link href="/" aria-label="Home" className='rotating '>
+        <Image src="/images/science.svg" width={95} height={95} alt="rotating" className='p-2 ' />  
       </Link>
-     <div className='text-md p-2 m-2'>By: <a className=' text-white underline' href="https://github.com/danwood1992">Dan Wood</a></div>
-   </Container>
+    </Container>
+
+
    </>
   )
 }

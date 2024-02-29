@@ -7,11 +7,9 @@ interface IndexHeadingSectionProps {
 }
 
 export default function IndexHeadingSection({quizData, section_id}:IndexHeadingSectionProps) { 
-  console.log('e: quizData:', quizData)
-
   return (
-      <Section id={section_id} >
+      <div id={section_id} className='relative isolate bg-dark-blue px-6 py-6 sm:py-6 lg:px-8' >
             <WelcomeBlock quizData={quizData} />
-      </Section>
+      </div>
     )         
 };
