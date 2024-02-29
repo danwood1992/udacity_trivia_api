@@ -6,8 +6,6 @@ from flask import request
 
 @app.route('/session/<uuid:quiz_id>/start', methods=['POST'])
 def start_quiz_session(quiz_id):
-    print("start quiz session endpoint")
-
     new_session = QuizSession(quiz_id=quiz_id, score=0, date=datetime.now())
     new_session.add()
     

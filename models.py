@@ -1,7 +1,7 @@
 from base import db
 from sqlalchemy import Column, Integer
 from sqlalchemy.dialects.postgresql import UUID
-import uuid
+import uuid, random
 
 class BaseModel(db.Model):
     __abstract__ = True
@@ -47,17 +47,20 @@ class Question(BaseModel):
     wrong_answer2 = db.Column(db.String, nullable=False)
     wrong_answer3 = db.Column(db.String, nullable=False)
     
+    
     def format(self):
+        options = [
+            {'text': self.answer, 'score': 1},
+            {'text': self.wrong_answer1, 'score': 0},
+            {'text': self.wrong_answer2, 'score': 0},
+            {'text': self.wrong_answer3, 'score': 0}
+        ]
+        random.shuffle(options)
         return {
             'id': self.id,
             'question': self.question,
             'category': self.category.type,
-            'options': [
-                {'text': self.answer, 'score': 1},
-                {'text': self.wrong_answer1, 'score': 0},
-                {'text': self.wrong_answer2, 'score': 0},
-                {'text': self.wrong_answer3, 'score': 0}
-            ],  
+            'options': options
         }
  
 class Quiz(BaseModel):
@@ -120,6 +123,20 @@ class QuizSession(BaseModel):
         self.score = self.score + 1
         self.update()
         return True
+    
+class QuizFeedback(BaseModel):
+    __tablename__ = 'feedback'
+    
+    quiz = db.relationship('Quiz', backref='feedbacks')
+    quiz_id = db.Column(UUID(as_uuid=True), db.ForeignKey('quizzes.id'), nullable=False)
+    feedback = db.Column(db.String, nullable=False)
+    
+    def format(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'message': self.message
+        }
     
     
     

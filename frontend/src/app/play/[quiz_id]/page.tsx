@@ -1,6 +1,7 @@
 'use client'
 import {Header} from "@/components/layout/Header";
 import PlaySection from "@/sections/PlaySection";
+import FeedbackSection from "@/sections/FeedbackSection";
 import getQuizData from "@/queries/getQuizData";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from 'react';
@@ -30,6 +31,8 @@ export default function Page() {
     <>
      <Header />
       <PlaySection section_id="play-section-1" quizData={quizData} />
+      <FeedbackSection section_id="feedback-section-1" quizData={quizData} />
+
     </>
   );
 }

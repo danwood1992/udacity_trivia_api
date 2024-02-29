@@ -2,14 +2,16 @@ from base import app
 from models import Quiz
 from flask import jsonify
 
-@app.route('/feedback/<uuid:quiz_id>', methods=['POST'])
-def play_quiz(quiz_id):
-    quiz = Quiz.query.get(quiz_id)
+@app.route('/feedback/<uuid:quizId>', methods=['POST'])
+def submit_feedback(quizId):
+    quiz = Quiz.query.get(quizId)
+    
     if quiz is None:
         return jsonify({
             'success': False,
             'message': 'Quiz not found'
         })
+        
     else:
         return jsonify({
             'success': True,

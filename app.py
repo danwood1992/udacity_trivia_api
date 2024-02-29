@@ -1,6 +1,6 @@
 from base import app
 from middlewares import setup_middlewares
-import endpoints.quiz, endpoints.session, endpoints.tools
+import endpoints.quiz, endpoints.session, endpoints.tools, endpoints.feedback
 
 setup_middlewares(app)
 

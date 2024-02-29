@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Section, Container } from '@/components/layout/Structures';
 import submitQuiz from '@/mutations/submitQuiz';
-import submitFeedback from '@/mutations/submitFeedback';
 import QuestionsBlock from '@/components/blocks/QuestionsBlock';
 import startQuizSession from '@/mutations/startQuizSession';
 import ProgressBar from '@/components/elements/ProgressBar';
@@ -12,11 +11,6 @@ interface NewPlaySectionProps {
     quizData: any;
 }
 
-interface submitFeedbackProps {
-  session_id: string;
-  quiz_id: any;
-  feedback: string;
-}
 
 export default function PlaySection({ quizData, section_id }: NewPlaySectionProps) {
   const [session_id, setSessionId] = useState('');
@@ -38,8 +32,6 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
     setQuizEnded(false);
     setQuizScore(0);
   }
-
-
 
   if (quizEnded) {
     submitQuiz(session_id, quizData.quiz.id, quizScore);
