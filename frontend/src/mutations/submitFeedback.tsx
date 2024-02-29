@@ -1,4 +1,4 @@
-export default async function submitQuiz(session_id: string, quiz_id: string, feedback: string) {
+export default async function submitFeedback(session_id: string, quiz_id: string, feedback: string) {
     const response = await fetch(`http://localhost:5125/feedback/${quiz_id}`, {
       method: 'POST',
       headers: {

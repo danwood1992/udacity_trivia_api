@@ -7,10 +7,15 @@ import startQuizSession from '@/mutations/startQuizSession';
 import ProgressBar from '@/components/elements/ProgressBar';
 import Timer from '@/components/elements/Timer';
 
-
 interface NewPlaySectionProps {
     section_id: string;
     quizData: any;
+}
+
+interface submitFeedbackProps {
+  session_id: string;
+  quiz_id: any;
+  feedback: string;
 }
 
 export default function PlaySection({ quizData, section_id }: NewPlaySectionProps) {
@@ -19,7 +24,6 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
   const [quizStarted, setQuizStarted] = useState(false);
   const [quizEnded, setQuizEnded] = useState(false);
   const [playerName, setPlayerName] = useState(''); 
-  const [feedback, setFeedback] = useState('');
 
   async function handleStartQuiz() {
     const response = await startQuizSession(quizData.quiz.id);
@@ -35,10 +39,7 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
     setQuizScore(0);
   }
 
-  async function handleSubmitFeedback() {
-    const response = await submitFeedback(session_id,quizData.quiz.id, feedback);
-    console.log(response);
-  }
+
 
   if (quizEnded) {
     submitQuiz(session_id, quizData.quiz.id, quizScore);
@@ -49,20 +50,7 @@ export default function PlaySection({ quizData, section_id }: NewPlaySectionProp
           <h1>Quiz Ended</h1>
           <h2>Your Score: {quizScore}</h2>
           <button onClick={restartQuiz}>Play again</button>
-
-          <Container className='text-md border border-green rounded-xl shadow shadow-xl grid grid-cols-1 justify-items-center p-4 m-4 capitalize'>
-          <div className='p-4'>
-            What Did you <span className='font-bold'>love or hate </span>about {quizData.quiz.name}!
-          </div>
-          <div className='grid grid-cols-1 m-4'>
-              <textarea className='border rounded-lg p-2' value={feedback} onChange={(e) => setFeedback(e.target.value)}></textarea>
-              <button className='p-2 m-2 rounded bg-dark-blue text-white' onClick={handleSubmitFeedback}>Submit</button>
-          </div>
-    
-            </Container>
-
-
-        </Container>
+          </Container>
       </Section>
     );
   }
