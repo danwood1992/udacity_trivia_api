@@ -1,8 +1,19 @@
 from flask import jsonify
 from utils import seed_database
-from models import Question
+from models import Question, Quiz
 from base import app, db
 
+
+@app.route('/info', methods=['GET'])
+def info():
+    questions = Question.query.all()
+    quizzes = Quiz.query.all()
+    
+    return jsonify({
+        'message': 'hello from info',
+        'questions': len(questions),
+        'quizzes': len(quizzes)
+    })
 
 @app.route('/test', methods=['GET'])
 def test():
@@ -34,3 +45,4 @@ def reset():
         'success': True,
         'message': 'Database reset'
     })
+    

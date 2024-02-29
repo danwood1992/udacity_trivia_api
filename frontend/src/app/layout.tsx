@@ -1,6 +1,4 @@
 import { Inter, Lexend } from 'next/font/google'
-import { Footer } from '@/components/layout/Footer'
-import { Header } from '@/components/layout/Header'
 import clsx from 'clsx'
 import '@/styles/tailwind.css'
 import { type Metadata } from 'next'
@@ -42,7 +40,7 @@ export default function RootLayout({
     >
       <body className="flex h-full flex-col bg-white">
           {children}
-        <Footer />
+   
       </body>
     </html>
   )
