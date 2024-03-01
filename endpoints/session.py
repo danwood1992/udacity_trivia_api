@@ -4,7 +4,7 @@ from base import app
 from datetime import datetime
 from flask import request
     
-@app.route('/sessions', methods=['GET'])
+@app.route('/api/sessions', methods=['GET'])
 def get_sessions():
     sessions = QuizSession.query.all()
     
@@ -15,7 +15,7 @@ def get_sessions():
         'sessions': [session.format() for session in sessions]
     })
 
-@app.route('/session/<uuid:quiz_id>/start', methods=['POST'])
+@app.route('/api/session/<uuid:quiz_id>/start', methods=['POST'])
 def start_quiz_session(quiz_id):
     new_session = QuizSession(quiz_id=quiz_id, score=0, date=datetime.now())
     new_session.add()
@@ -32,7 +32,7 @@ def start_quiz_session(quiz_id):
         'quiz_id': quiz_id
     })
 
-@app.route('/session/<uuid:session_id>/submitquiz', methods=['POST'])
+@app.route('/api/session/<uuid:session_id>/submitquiz', methods=['POST'])
 def submit_quiz(session_id):
     print(f"submitQuiz {session_id}")
     session = QuizSession.query.get(session_id)
@@ -54,7 +54,7 @@ def submit_quiz(session_id):
         'score': session.score
     })
     
-@app.route('/session/<uuid:session_id>', methods=['DELETE'])
+@app.route('/api/session/<uuid:session_id>', methods=['DELETE'])
 def delete_session(session_id):
     session = QuizSession.query.get(session_id)
     if session is None:

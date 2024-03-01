@@ -4,7 +4,7 @@ from models import Question, Quiz
 from base import app, db
 
 
-@app.route('/info', methods=['GET'])
+@app.route('/api/info', methods=['GET'])
 def info():
     questions = Question.query.all()
     quizzes = Quiz.query.all()
@@ -15,14 +15,14 @@ def info():
         'quizzes': len(quizzes)
     })
 
-@app.route('/test', methods=['GET'])
+@app.route('/api/test', methods=['GET'])
 def test():
     return jsonify({
         'message': 'hello from test'
     })
     
 
-@app.route('/seed', methods=['GET'])
+@app.route('/api/seed', methods=['GET'])
 def seed():
     if Question.query.count() > 0:
         return jsonify({
@@ -37,7 +37,7 @@ def seed():
             'message': 'Database seeded'
         })
         
-@app.route('/reset', methods=['GET'])
+@app.route('/api/reset', methods=['GET'])
 def reset():
     db.drop_all()
     db.create_all()

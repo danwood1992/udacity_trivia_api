@@ -2,7 +2,7 @@ from base import app
 from models import Quiz
 from flask import jsonify
 
-@app.route('/feedback/<uuid:quizId>', methods=['POST'])
+@app.route('/api/feedback/<uuid:quizId>', methods=['POST'])
 def submit_feedback(quizId):
     quiz = Quiz.query.get(quizId)
     

@@ -4,7 +4,7 @@ from base import app
 from datetime import datetime
 from flask import request
 
-@app.route('/quiz/<uuid:quiz_id>/play', methods=['GET'])
+@app.route('/api/quiz/<uuid:quiz_id>/play', methods=['GET'])
 def play_quiz(quiz_id):
     quiz = Quiz.query.get(quiz_id)
     print("play quiz endpoint, getting quiz: ", quiz.name)
@@ -22,7 +22,7 @@ def play_quiz(quiz_id):
 
 
 
-@app.route('/quizzes', methods=['GET'])
+@app.route('/api/quizzes', methods=['GET'])
 def get_quizzes():
     quizzes = Quiz.query.all()
     print("quizzes endpoint")
@@ -36,7 +36,7 @@ def get_quizzes():
     })
     
     
-@app.route('/quiz/<uuid:quiz_id>', methods=['DELETE'])
+@app.route('/api/quiz/<uuid:quiz_id>', methods=['DELETE'])
 def delete_quiz(quiz_id):
     quiz = Quiz.query.get(quiz_id)
     if quiz is None:
@@ -52,7 +52,7 @@ def delete_quiz(quiz_id):
         })
 
 
-@app.route('/quiz/<uuid:quiz_id>/questions', methods=['GET'])
+@app.route('/api/quiz/<uuid:quiz_id>/questions', methods=['GET'])
 def get_questions(quiz_id):
     questions = Question.query.filter_by(quiz_id=quiz_id).all()
     if len(questions) == 0:
@@ -67,7 +67,7 @@ def get_questions(quiz_id):
             'questions': [question.format() for question in questions]
         })
 
-@app.route('/quiz/<uuid:quiz_id>/question', methods=['POST'])
+@app.route('/api/quiz/<uuid:quiz_id>/question', methods=['POST'])
 def add_question(quiz_id):
     data = request.get_json()
     return jsonify({
@@ -87,7 +87,7 @@ def add_category():
         'category': new_category.format()
     })
     
-@app.route('/questions/category/<uuid:category_id>', methods=['POST'])
+@app.route('/api/questions/category/<uuid:category_id>', methods=['POST'])
 def get_questions_by_category(category_id):
     questions = Question.query.filter_by(category_id=category_id).all()
     if len(questions) == 0:
