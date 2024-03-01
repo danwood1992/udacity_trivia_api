@@ -52,7 +52,7 @@ export default function QuestionBlock({ quizData, updateQuizScore,quizScore,setQ
       </Container>
       <Container className='grid grid-cols-3 p-8 m-8 justify-items-center'>
         <h2 className='flex rounded-lg font-bold text-white p-4 text-xl'>Question: {currentQIndex + 1}</h2>
-        <button className='flex rounded-lg font-bold text-dark-blue bg-white p-4 text-2xl hover:bg-red-500'  onClick={handleAnswerSubmit}>Submit Answer</button>
+        <button className='flex rounded-lg font-bold text-dark-blue bg-white p-4 text-2xl hover:bg-red-500 hover:text-white'  onClick={handleAnswerSubmit}>Submit Answer</button>
         <h2 className='flex rounded-lg font-bold text-white p-4 text-xl'>Score: {quizScore}</h2>
       </Container>
     </div>
