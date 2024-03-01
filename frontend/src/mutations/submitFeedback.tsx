@@ -1,6 +1,6 @@
 export default async function submitFeedback(quizId: string, feedback: any) {
     console.log('Information: quiz_id:', quizId)
-    const response = await fetch(`http://localhost:5125/feedback/${quizId}`, {
+    const response = await fetch(`http://localhost:5125/api/feedback/${quizId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

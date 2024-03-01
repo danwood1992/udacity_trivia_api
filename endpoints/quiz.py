@@ -76,7 +76,7 @@ def add_question(quiz_id):
         
     })
     
-@app.route('/categories', methods=['POST'])
+@app.route('api/categories', methods=['POST'])
 def add_category():
     data = request.get_json()
     new_category = Category(name=data['name'])
@@ -87,7 +87,7 @@ def add_category():
         'category': new_category.format()
     })
     
-@app.route('/api/questions/category/<uuid:category_id>', methods=['POST'])
+@app.route('/api/category/<uuid:category_id>', methods=['POST'])
 def get_questions_by_category(category_id):
     questions = Question.query.filter_by(category_id=category_id).all()
     if len(questions) == 0:
