@@ -3,6 +3,17 @@ from models import  QuizSession
 from base import app
 from datetime import datetime
 from flask import request
+    
+@app.route('/sessions', methods=['GET'])
+def get_sessions():
+    sessions = QuizSession.query.all()
+    
+    return jsonify({
+        'message': 'hello from get sessions',
+        'no_sessions': len(sessions),
+        'success': True,
+        'sessions': [session.format() for session in sessions]
+    })
 
 @app.route('/session/<uuid:quiz_id>/start', methods=['POST'])
 def start_quiz_session(quiz_id):
@@ -31,12 +42,10 @@ def submit_quiz(session_id):
             'message': 'Session not found'
         })
     
-    data = request.get_json()
-    
-    
+    data = request.get_json()    
     session.score += data['score']
     session.update()
-    print(f"session score: {session.score}")
+
         
     return jsonify({
         'message': 'hello from submit answer session',
@@ -45,17 +54,20 @@ def submit_quiz(session_id):
         'score': session.score
     })
     
-    
-@app.route('/sessions', methods=['GET'])
-def get_sessions():
-    sessions = QuizSession.query.all()
-    
-    return jsonify({
-        'message': 'hello from get sessions',
-        'no_sessions': len(sessions),
-        'success': True,
-        'sessions': [session.format() for session in sessions]
-    })
+@app.route('/session/<uuid:session_id>', methods=['DELETE'])
+def delete_session(session_id):
+    session = QuizSession.query.get(session_id)
+    if session is None:
+        return jsonify({
+            'success': False,
+            'message': 'Session not found'
+        })
+    else:
+        session.delete()
+        return jsonify({
+            'success': True,
+            'message': 'Session deleted'
+        })
     
 
     
