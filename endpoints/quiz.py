@@ -34,3 +34,19 @@ def get_quizzes():
         'success': True,
         'quizzes': [quiz.format() for quiz in quizzes]
     })
+    
+    
+@app.route('/quiz/<uuid:quiz_id>', methods=['DELETE'])
+def delete_quiz(quiz_id):
+    quiz = Quiz.query.get(quiz_id)
+    if quiz is None:
+        return jsonify({
+            'success': False,
+            'message': 'Quiz not found'
+        })
+    else:
+        quiz.delete()
+        return jsonify({
+            'success': True,
+            'message': 'Quiz deleted'
+        })
