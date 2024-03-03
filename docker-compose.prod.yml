@@ -36,7 +36,6 @@ services:
       - ./.env
     ports:
       - "3000:3000"
-      - "8090:3000"
     networks:
       - trivia-network
     depends_on:

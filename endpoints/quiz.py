@@ -76,7 +76,7 @@ def add_question(quiz_id):
         
     })
     
-@app.route('api/categories', methods=['POST'])
+@app.route('/api/categories', methods=['POST'])
 def add_category():
     data = request.get_json()
     new_category = Category(name=data['name'])
