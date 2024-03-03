@@ -29,7 +29,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./compose/frontend/Dockerfile
+      dockerfile: ./compose/frontend/Dockerfile.prod
     volumes:
       - .:/opt/trivia
     env_file:
