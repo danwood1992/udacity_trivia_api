@@ -12,7 +12,7 @@ export default function WelcomeBlock({quizData}:WelcomeBlockProps) {
     <>
     <Container className='grid grid-cols-1 justify-items-center bg-dark-blue text-white p-4 m-4 '>
     
-      <BlockHeading text='UdaciTrivia' className='text-7xl' />
+      <BlockHeading text='crunchie' className='text-7xl' />
       <Link href="/" aria-label="Home" className='rotating '>
         <Image src="/images/science.svg" width={95} height={95} alt="rotating" className='p-2 ' />  
       </Link>
