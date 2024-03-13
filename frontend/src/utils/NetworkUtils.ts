@@ -6,6 +6,6 @@ export function getApiUrl() {
     }
     else {
         console.log("Using production API URL");
-        return "http://trivia.imperisoft.co.uk:5125";
+        return "https://trivia.imperisoft.co.uk";
     }
 }
