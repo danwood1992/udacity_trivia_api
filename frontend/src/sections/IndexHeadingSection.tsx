@@ -1,4 +1,3 @@
-import { Section, Container } from '@/components/layout/Structures';
 import WelcomeBlock from '@/components/blocks/WelcomeBlock';
 
 interface IndexHeadingSectionProps {
