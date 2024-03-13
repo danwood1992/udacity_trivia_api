@@ -14,7 +14,7 @@ export function Header() {
               <Image src="/images/science.svg" width={45} height={45} alt="rotating" />  
             </Link>
           </Container>
-          <p className="text-2xl font-bold mt-2"> UdaciTrivia</p>
+          <p className="text-2xl font-bold mt-2"> crunchie</p>
         </nav>
       </Container>
     </header>
