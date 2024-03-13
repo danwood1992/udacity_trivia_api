@@ -1,6 +1,6 @@
 export default async function getQuestions() {
     
-    const response = await fetch('http://trivia-api:5125/questions'); // api -> backend -> questions
+    const response = await fetch('http://localhost:5125/api/questions'); // api -> backend -> questions
     
     if (!response.ok) {
         throw new Error('Network response was not ok');
