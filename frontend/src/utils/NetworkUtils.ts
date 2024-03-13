@@ -1,3 +1,9 @@
-//export const api_url = "https://trivia.imperisoft.co.uk:5125";
 
-export const api_url = "http://trivia-api:5125";
+export function getApiUrl() {
+    if (process.env.NODE_ENV === 'development') {
+        return "http://localhost:5125";
+    }
+    else {
+        return "https://trivia.imperisoft.co.uk:5125";
+    }
+}
