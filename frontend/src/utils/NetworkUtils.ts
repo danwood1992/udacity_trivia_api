@@ -4,6 +4,6 @@ export function getApiUrl() {
         return "http://localhost:5125";
     }
     else {
-        return "https://trivia.imperisoft.co.uk:5125";
+        return "http://trivia.imperisoft.co.uk:5125";
     }
 }
