@@ -42,7 +42,7 @@ export default function QuestionBlock({ quizData, updateQuizScore,quizScore,setQ
   return (
     <div className="rounded-xl m-2">
       <Container className='justify-center p-12'>
-        <BlockHeading className="capitalize text-4xl text-white font-bold p-4" text={currentQ.question}></BlockHeading>
+        <BlockHeading className="capitalize text-2xl md:text-4xl text-white font-bold p-4" text={currentQ.question}></BlockHeading>
       </Container>
       <Container className='grid grid-cols-1 md:grid-cols-2 gap-2 p-12m-8 p-2'>
         <Answer answer={currentQ.options[0].text} clicked={answersClicked[0]} onClick={() => handleAnswerClick(0,currentQ.options[0].score)}/>

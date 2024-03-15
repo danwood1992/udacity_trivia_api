@@ -14,7 +14,7 @@ export default function Answer(
   }: AnswerProps) {
 
       const containerClasses = clsx(
-        'm-2 text-center text-3xl p-6 mx-8 border-dark-blue border-8 rounded-xl hover:text-white  hover:bg-red-500 font-bold capitalize',
+        'm-2 text-center text-2xl md:text-3xl p-2 mx-2 border-dark-blue border-8 rounded-xl hover:text-white md:mx-4 md:p-6 hover:bg-red-500 font-bold capitalize',
         {
             'bg-white text-dark-blue shadow': !clicked ,
             'bg-red-500 text-white shadow border-red-500': clicked,
