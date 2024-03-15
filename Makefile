@@ -45,5 +45,9 @@ prod-logs:
 prod-deploy:
 	@echo "Redeploying Docker containers for production..."
 	docker compose -f docker-compose.prod.yml down
+	git pull
+	cd frontend && npm run build
+	cd ..
+	docker compose -f docker-compose.prod.yml build
 	docker compose -f docker-compose.prod.yml up -d
 
